@@ -170,43 +170,44 @@
 <body class="bg-[#faf8f5] text-gray-800">
     <!-- Sticky Header -->
     <header class="fixed w-full z-50 sticky-header soft-shadow">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                <!-- Logo -->
-                <div class="flex items-center space-x-2">
-                    <div class="w-12 h-12 bg-[#8B7355] rounded-full flex items-center justify-center">
-                        <span class="text-white font-bold display-font text-xl">CM</span>
-                    </div>
-                    <div class="flex flex-col">
-                        <span class="text-[#8B7355] font-bold display-font text-xl">Compania Mică</span>
-                        <span class="text-xs text-gray-600">Grădiniță & Afterschool</span>
-                    </div>
+        <div class="max-w-[1200px] mx-auto px-6 sm:px-10 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <div class="flex items-center space-x-2">
+                <div class="w-12 h-12 bg-[#8B7355] rounded-full flex items-center justify-center">
+                    <span class="text-white font-bold display-font text-xl">CM</span>
                 </div>
-
-                <!-- Desktop Navigation -->
-                <nav class="hidden lg:flex items-center space-x-8">
-                    <a href="#noi" class="nav-link text-gray-700 hover:text-[#8B7355] font-medium">Noi</a>
-                    <a href="#programe" class="nav-link text-gray-700 hover:text-[#8B7355] font-medium">Programe</a>
-                    <a href="#o-zi" class="nav-link text-gray-700 hover:text-[#8B7355] font-medium">O zi la noi</a>
-                    <a href="#parinti" class="nav-link text-gray-700 hover:text-[#8B7355] font-medium">Părinți</a>
-                    <a href="#recenzii" class="nav-link text-gray-700 hover:text-[#8B7355] font-medium">Recenzii</a>
-                    <a href="#contact" class="nav-link text-gray-700 hover:text-[#8B7355] font-medium">Contact</a>
-                </nav>
-
-                <!-- Desktop CTAs -->
-                <div class="hidden lg:flex items-center space-x-4">
-                    <a href="tel:0216150000" class="text-gray-700 hover:text-[#8B7355] font-medium">021 615 0000</a>
-                    <a href="https://wa.me/40745123456" class="flex items-center space-x-2 text-[#25D366] hover:text-[#128C7E] transition-colors">
-                        <i class="fab fa-whatsapp text-xl"></i>
-                        <span class="font-medium">WhatsApp</span>
-                    </a>
-                    <a href="#" class="bg-[#8B7355] text-white px-6 py-2.5 rounded-full font-medium hover:bg-[#A0826D] transition-colors shadow-lg hover:shadow-xl transform hover:scale-105" onclick="openModal()">
-                        Programează o vizită
-                    </a>
+                <div class="flex flex-col">
+                    <span class="text-[#8B7355] font-bold display-font text-xl">Compania Mică</span>
+                    <span class="text-xs text-gray-600">Grădiniță & Afterschool</span>
                 </div>
+            </div>
 
-                <!-- Mobile Menu Button -->
-                <button class="lg:hidden text-gray-700 text-2xl" id="mobileMenuBtn">
+            <!-- Desktop Navigation -->
+            <nav class="hidden lg:flex items-center space-x-8">
+                <a href="#noi" class="nav-link text-gray-700 hover:text-[#8B7355] font-medium">Despre</a>
+                <a href="#programe" class="nav-link text-gray-700 hover:text-[#8B7355] font-medium">Programe</a>
+                <a href="#recenzii" class="nav-link text-gray-700 hover:text-[#8B7355] font-medium">Recenzii</a>
+                <a href="#contact" class="nav-link text-gray-700 hover:text-[#8B7355] font-medium">Contact</a>
+            </nav>
+
+            <!-- Desktop CTAs -->
+            <div class="hidden lg:flex items-center space-x-4">
+                <a href="tel:0216150000" class="text-gray-700 hover:text-[#8B7355] font-medium">021 615 0000</a>
+                <a href="https://wa.me/40745123456" class="flex items-center space-x-2 text-[#25D366] hover:text-[#128C7E] transition-colors">
+                    <i class="fab fa-whatsapp text-xl"></i>
+                    <span class="font-medium">WhatsApp</span>
+                </a>
+                <a href="#" class="bg-[#8B7355] text-white px-6 py-2.5 rounded-xl font-medium hover:bg-[#A0826D] transition-colors shadow-lg hover:shadow-xl transform hover:scale-105" onclick="openModal()">
+                    Programează o vizită
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <div class="lg:hidden flex items-center space-x-3">
+                <a href="#" class="bg-[#8B7355] text-white px-4 py-2 rounded-xl font-medium hover:bg-[#A0826D] transition-colors text-sm" onclick="openModal()">
+                    Vizită
+                </a>
+                <button class="text-gray-700 text-2xl" id="mobileMenuBtn">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
@@ -214,11 +215,9 @@
 
         <!-- Mobile Navigation -->
         <div class="lg:hidden hidden bg-white border-t" id="mobileMenu">
-            <div class="container mx-auto px-4 py-4 space-y-4">
-                <a href="#noi" class="block px-4 py-2 text-gray-700 hover:text-[#8B7355] font-medium">Noi</a>
+            <div class="max-w-[1200px] mx-auto px-4 py-4 space-y-4">
+                <a href="#noi" class="block px-4 py-2 text-gray-700 hover:text-[#8B7355] font-medium">Despre</a>
                 <a href="#programe" class="block px-4 py-2 text-gray-700 hover:text-[#8B7355] font-medium">Programe</a>
-                <a href="#o-zi" class="block px-4 py-2 text-gray-700 hover:text-[#8B7355] font-medium">O zi la noi</a>
-                <a href="#parinti" class="block px-4 py-2 text-gray-700 hover:text-[#8B7355] font-medium">Părinți</a>
                 <a href="#recenzii" class="block px-4 py-2 text-gray-700 hover:text-[#8B7355] font-medium">Recenzii</a>
                 <a href="#contact" class="block px-4 py-2 text-gray-700 hover:text-[#8B7355] font-medium">Contact</a>
                 <div class="pt-4 border-t">
@@ -235,17 +234,13 @@
     <!-- Mobile CTA Bar -->
     <div class="lg:hidden fixed bottom-0 left-0 right-0 z-40 mobile-cta soft-shadow">
         <div class="flex items-center justify-around py-3">
-            <a href="tel:0216150000" class="flex flex-col items-center text-white">
-                <i class="fas fa-phone-alt text-lg"></i>
-                <span class="text-xs font-medium">Sună</span>
+            <a href="#" class="flex flex-col items-center text-white" onclick="openModal()">
+                <i class="fas fa-calendar text-lg"></i>
+                <span class="text-xs font-medium">Vizită</span>
             </a>
             <a href="https://wa.me/40745123456" class="flex flex-col items-center text-white">
                 <i class="fab fa-whatsapp text-lg"></i>
                 <span class="text-xs font-medium">WhatsApp</span>
-            </a>
-            <a href="#" class="flex flex-col items-center text-white" onclick="openModal()">
-                <i class="fas fa-calendar text-lg"></i>
-                <span class="text-xs font-medium">Vizită</span>
             </a>
         </div>
     </div>
@@ -301,53 +296,30 @@
     </div>
 
     <!-- Hero Section -->
-    <section class="pt-32 pb-20 md:pt-40 md:pb-32 relative overflow-hidden">
-        <div class="parallax absolute inset-0 gradient-bg opacity-30"></div>
-        <div class="absolute inset-0 bg-[url('a-teacher-walking-among-small-school-children-on-t-2026-01-05-06-31-48-utc.webp')] bg-cover bg-center opacity-10"></div>
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="grid lg:grid-cols-2 gap-12 items-center">
+    <section class="pt-32 pb-24 md:pt-40 md:pb-32 relative overflow-hidden bg-[#faf8f5]">
+        <div class="max-w-[1200px] mx-auto px-6 sm:px-10 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
                 <div class="fade-in">
-                    <div class="flex flex-wrap gap-3 mb-6">
-                        <span class="px-4 py-1.5 bg-white rounded-full text-sm font-medium text-gray-700 soft-shadow">Acreditată</span>
-                        <span class="px-4 py-1.5 bg-white rounded-full text-sm font-medium text-gray-700 soft-shadow">Germană</span>
-                        <span class="px-4 py-1.5 bg-white rounded-full text-sm font-medium text-gray-700 soft-shadow">Curte</span>
-                        <span class="px-4 py-1.5 bg-white rounded-full text-sm font-medium text-gray-700 soft-shadow">Lângă parc</span>
-                        <span class="px-4 py-1.5 bg-white rounded-full text-sm font-medium text-gray-700 soft-shadow">15+ ani</span>
-                    </div>
-                    <h1 class="display-font text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight">
-                        Grădiniță și Afterschool privat acreditat în Sector 2
+                    <h1 class="display-font text-[clamp(2.5rem,5vw,3.5rem)] font-bold text-gray-900 mb-6 leading-tight">
+                        Grădiniță și Afterschool privat în Sector 2
                     </h1>
                     <p class="text-xl text-gray-600 mb-8 leading-relaxed">
-                        Lângă Parcul Circului. Predare în limba germană. Mediu sigur, educatori dedicați, comunicare transparentă.
+                        Lângă Parcul Circului. Predare și în limba germană. Programare vizită în 1 minut.
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4">
-                        <a href="#" class="bg-[#8B7355] text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-[#A0826D] transition-all shadow-xl hover:shadow-2xl transform hover:scale-105 text-center" onclick="openModal()">
+                        <a href="#" class="bg-[#8B7355] text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-[#A0826D] transition-all shadow-xl hover:shadow-2xl transform hover:scale-105 text-center" onclick="openModal()">
                             Programează o vizită
                         </a>
-                        <a href="https://wa.me/40745123456" class="bg-white text-[#25D366] border-2 border-[#25D366] px-8 py-4 rounded-full font-semibold text-lg hover:bg-[#25D366] hover:text-white transition-all shadow-lg hover:shadow-xl flex items-center justify-center space-x-2">
+                        <a href="https://wa.me/40745123456" class="bg-white text-[#25D366] border-2 border-[#25D366] px-8 py-4 rounded-xl font-semibold text-lg hover:bg-[#25D366] hover:text-white transition-all shadow-lg hover:shadow-xl flex items-center justify-center space-x-2">
                             <i class="fab fa-whatsapp"></i>
                             <span>Scrie-ne pe WhatsApp</span>
                         </a>
                     </div>
-                    <div class="mt-8 flex items-center space-x-6 text-sm text-gray-600">
-                        <div class="flex items-center space-x-2">
-                            <i class="fas fa-map-marker-alt text-[#8B7355]"></i>
-                            <span>Strada Someș 15, Sector 2</span>
-                        </div>
-                        <div class="flex items-center space-x-2">
-                            <i class="fas fa-clock text-[#8B7355]"></i>
-                            <span>Luni-Vineri: 07:30-18:30</span>
-                        </div>
-                        <div class="flex items-center space-x-2">
-                            <i class="fas fa-certificate text-[#8B7355]"></i>
-                            <span>Acreditare oficială</span>
-                        </div>
-                    </div>
                 </div>
                 <div class="relative fade-in delay-200">
-                    <div class="relative overflow-hidden rounded-2xl soft-shadow">
+                    <div class="relative overflow-hidden rounded-2xl soft-shadow aspect-video">
                         <img src="preschool-students-raising-their-hands-2026-01-09-10-13-33-utc.webp" alt="Copii participând la activitate" class="w-full h-full object-cover">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
                     </div>
                 </div>
             </div>
