@@ -1,0 +1,1478 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compania Mică - Grădiniță și Afterschool în Sector 2 București</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        .display-font {
+            font-family: 'Playfair Display', serif;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #8B7355 0%, #A0826D 50%, #D4A373 100%);
+        }
+        .soft-shadow {
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+        }
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12);
+        }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .parallax {
+            transition: transform 0.1s ease-out;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .accordion-content.active {
+            max-height: 500px;
+        }
+        .sticky-header {
+            backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.95);
+            transition: all 0.3s ease;
+        }
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #8B7355;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+        .testimonial-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            border: 1px solid #e9ecef;
+        }
+        .mobile-cta {
+            background: linear-gradient(90deg, #25D366 0%, #128C7E 100%);
+        }
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Sticky Header -->
+    <header class="fixed w-full z-50 sticky-header soft-shadow">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex items-center space-x-2">
+                    <div class="w-12 h-12 bg-[#8B7355] rounded-full flex items-center justify-center">
+                        <span class="text-white font-bold display-font text-xl">CM</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-[#8B7355] font-bold display-font text-xl">Compania Mică</span>
+                        <span class="text-xs text-gray-600">Grădiniță & Afterschool</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden lg:flex items-center space-x-8">
+                    <a href="#noi" class="nav-link text-gray-700 hover:text-[#8B7355] font-medium">Noi</a>
+                    <a href="#programe" class="nav-link text-gray-700 hover:text-[#8B7355] font-medium">Programe</a>
+                    <a href="#curriculum" class="nav-link text-gray-700 hover:text-[#8B7355] font-medium">Curriculum</a>
+                    <a href="#calendar" class="nav-link text-gray-700 hover:text-[#8B7355] font-medium">Calendar</a>
+                    <a href="#meniu" class="nav-link text-gray-700 hover:text-[#8B7355] font-medium">Meniu</a>
+                    <a href="#resurse" class="nav-link text-gray-700 hover:text-[#8B7355] font-medium">Resurse</a>
+                    <a href="#coaching" class="nav-link text-gray-700 hover:text-[#8B7355] font-medium">Coaching</a>
+                    <a href="#testimoniale" class="nav-link text-gray-700 hover:text-[#8B7355] font-medium">Testimoniale</a>
+                    <a href="#contact" class="nav-link text-gray-700 hover:text-[#8B7355] font-medium">Contact</a>
+                </nav>
+
+                <!-- Desktop CTAs -->
+                <div class="hidden lg:flex items-center space-x-4">
+                    <a href="https://wa.me/40722123456" class="flex items-center space-x-2 text-[#25D366] hover:text-[#128C7E] transition-colors">
+                        <i class="fab fa-whatsapp text-xl"></i>
+                        <span class="font-medium">WhatsApp</span>
+                    </a>
+                    <a href="tel:+40211234567" class="text-gray-700 hover:text-[#8B7355] font-medium">021 123 4567</a>
+                    <a href="#contact" class="bg-[#8B7355] text-white px-6 py-2.5 rounded-full font-medium hover:bg-[#A0826D] transition-colors shadow-lg hover:shadow-xl transform hover:scale-105">
+                        Programează o vizită
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="lg:hidden text-gray-700 text-2xl" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <div class="lg:hidden hidden bg-white border-t" id="mobileMenu">
+            <div class="container mx-auto px-4 py-4 space-y-4">
+                <a href="#noi" class="block px-4 py-2 text-gray-700 hover:text-[#8B7355] font-medium">Noi</a>
+                <a href="#programe" class="block px-4 py-2 text-gray-700 hover:text-[#8B7355] font-medium">Programe</a>
+                <a href="#curriculum" class="block px-4 py-2 text-gray-700 hover:text-[#8B7355] font-medium">Curriculum</a>
+                <a href="#calendar" class="block px-4 py-2 text-gray-700 hover:text-[#8B7355] font-medium">Calendar</a>
+                <a href="#meniu" class="block px-4 py-2 text-gray-700 hover:text-[#8B7355] font-medium">Meniu</a>
+                <a href="#resurse" class="block px-4 py-2 text-gray-700 hover:text-[#8B7355] font-medium">Resurse</a>
+                <a href="#coaching" class="block px-4 py-2 text-gray-700 hover:text-[#8B7355] font-medium">Coaching</a>
+                <a href="#testimoniale" class="block px-4 py-2 text-gray-700 hover:text-[#8B7355] font-medium">Testimoniale</a>
+                <a href="#contact" class="block px-4 py-2 text-gray-700 hover:text-[#8B7355] font-medium">Contact</a>
+                <div class="pt-4 border-t">
+                    <a href="https://wa.me/40722123456" class="flex items-center space-x-2 text-[#25D366] hover:text-[#128C7E] transition-colors">
+                        <i class="fab fa-whatsapp text-xl"></i>
+                        <span class="font-medium">WhatsApp</span>
+                    </a>
+                    <a href="tel:+40211234567" class="block text-gray-700 hover:text-[#8B7355] font-medium mt-2">021 123 4567</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile CTA Bar -->
+    <div class="lg:hidden fixed bottom-0 left-0 right-0 z-40 mobile-cta soft-shadow">
+        <div class="flex items-center justify-around py-3">
+            <a href="tel:+40211234567" class="flex flex-col items-center text-white">
+                <i class="fas fa-phone-alt text-lg"></i>
+                <span class="text-xs font-medium">Sună</span>
+            </a>
+            <a href="https://wa.me/40722123456" class="flex flex-col items-center text-white">
+                <i class="fab fa-whatsapp text-lg"></i>
+                <span class="text-xs font-medium">WhatsApp</span>
+            </a>
+            <a href="#contact" class="flex flex-col items-center text-white">
+                <i class="fas fa-calendar text-lg"></i>
+                <span class="text-xs font-medium">Programează</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 md:pt-40 md:pb-32 relative overflow-hidden">
+        <div class="parallax absolute inset-0 gradient-bg opacity-30"></div>
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1540574163026-643ea20ade25?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')] bg-cover bg-center opacity-10"></div>
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="fade-in">
+                    <div class="flex flex-wrap gap-3 mb-6">
+                        <span class="px-4 py-1.5 bg-white rounded-full text-sm font-medium text-gray-700 soft-shadow">Acreditată</span>
+                        <span class="px-4 py-1.5 bg-white rounded-full text-sm font-medium text-gray-700 soft-shadow">Lângă parc</span>
+                        <span class="px-4 py-1.5 bg-white rounded-full text-sm font-medium text-gray-700 soft-shadow">Germană</span>
+                        <span class="px-4 py-1.5 bg-white rounded-full text-sm font-medium text-gray-700 soft-shadow">Curte generoasă</span>
+                        <span class="px-4 py-1.5 bg-white rounded-full text-sm font-medium text-gray-700 soft-shadow">Peste 15 ani</span>
+                    </div>
+                    <h1 class="display-font text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight">
+                        Grădiniță și Afterschool privată acreditată
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+                        O primă casă pentru copilul tău în Sector 2, lângă Parcul Circului. Predare în limba germană, educatori dedicați și mediu sigur, pentru peste 15 ani.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#contact" class="bg-[#8B7355] text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-[#A0826D] transition-all shadow-xl hover:shadow-2xl transform hover:scale-105 text-center">
+                            Programează o vizită
+                        </a>
+                        <a href="https://wa.me/40722123456" class="bg-white text-[#25D366] border-2 border-[#25D366] px-8 py-4 rounded-full font-semibold text-lg hover:bg-[#25D366] hover:text-white transition-all shadow-lg hover:shadow-xl flex items-center justify-center space-x-2">
+                            <i class="fab fa-whatsapp"></i>
+                            <span>Cere detalii pe WhatsApp</span>
+                        </a>
+                        <a href="#" class="bg-gray-100 text-gray-700 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-200 transition-all flex items-center justify-center space-x-2">
+                            <i class="fas fa-download"></i>
+                            <span>Descarcă oferta</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="relative fade-in delay-200">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="relative overflow-hidden rounded-2xl card-hover">
+                            <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Copii jucându-se în grădiniță" class="w-full h-64 object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                        </div>
+                        <div class="relative overflow-hidden rounded-2xl card-hover">
+                            <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Activitate educațională" class="w-full h-48 object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                        </div>
+                        <div class="relative overflow-hidden rounded-2xl card-hover">
+                            <img src="https://images.unsplash.com/photo-1505576399279-a1ae4ed528f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Curtă de grădiniță" class="w-full h-48 object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                        </div>
+                        <div class="relative overflow-hidden rounded-2xl card-hover">
+                            <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Educație în natură" class="w-full h-64 object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- De ce Compania Mică -->
+    <section id="noi" class="py-20 md:py-24 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="display-font text-4xl md:text-5xl font-bold text-gray-900 mb-4">De ce Compania Mică?</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Un mediu dedicat dezvoltării complete a copilului tău, cu atenție la fiecare detalii
+                </p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="fade-in card-hover p-6 bg-gray-50 rounded-2xl border border-gray-100">
+                    <div class="w-12 h-12 bg-[#8B7355]/10 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-shield-alt text-[#8B7355] text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Mediu sigur și sprijin emoțional</h3>
+                    <p class="text-gray-600">
+                        Atmosferă caldă și prietenoasă, unde copilul se simte în siguranță și iubit.
+                    </p>
+                </div>
+                <div class="fade-in card-hover p-6 bg-gray-50 rounded-2xl border border-gray-100">
+                    <div class="w-12 h-12 bg-[#8B7355]/10 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-users text-[#8B7355] text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Educați calificați și dedicați</h3>
+                    <p class="text-gray-600">
+                        Echipa noastră are peste 15 ani de experiență în educație timpurie.
+                    </p>
+                </div>
+                <div class="fade-in card-hover p-6 bg-gray-50 rounded-2xl border border-gray-100">
+                    <div class="w-12 h-12 bg-[#8B7355]/10 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-language text-[#8B7355] text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Limba germană cu răbdare</h3>
+                    <p class="text-gray-600">
+                        Învățare contextualizată și plăcută, prin activități interactive.
+                    </p>
+                </div>
+                <div class="fade-in card-hover p-6 bg-gray-50 rounded-2xl border border-gray-100">
+                    <div class="w-12 h-12 bg-[#8B7355]/10 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-tree text-[#8B7355] text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Natură și ieșiri dese afară</h3>
+                    <p class="text-gray-600">
+                        Acces liber la Parcul Circului și activități în aer liber zilnice.
+                    </p>
+                </div>
+                <div class="fade-in card-hover p-6 bg-gray-50 rounded-2xl border border-gray-100">
+                    <div class="w-12 h-12 bg-[#8B7355]/10 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-heart text-[#8B7355] text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Consecvență și respect</h3>
+                    <p class="text-gray-600">
+                        Rutină clare și respect reciproc, pentru o dezvoltare armonioasă.
+                    </p>
+                </div>
+                <div class="fade-in card-hover p-6 bg-gray-50 rounded-2xl border border-gray-100">
+                    <div class="w-12 h-12 bg-[#8B7355]/10 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-star text-[#8B7355] text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Calitate garantată</h3>
+                    <p class="text-gray-600">
+                        Acreditată prin OM 5362/28.06.2024, respectând standardele educaționale.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programele Noastre -->
+    <section id="programe" class="py-20 md:py-24 bg-gray-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="display-font text-4xl md:text-5xl font-bold text-gray-900 mb-4">Programele noastre</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Opțiuni complete pentru copilul tău, de la grădiniță până la activități după școală
+                </p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="fade-in card-hover bg-white rounded-2xl p-8 border border-gray-100">
+                    <div class="w-16 h-16 bg-gradient-to-br from-[#8B7355] to-[#A0826D] rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-child text-white text-2xl"></i>
+                    </div>
+                    <h3 class="display-font text-2xl font-bold text-gray-900 mb-4">Grădiniță</h3>
+                    <p class="text-gray-600 mb-6">1,5 – 6 ani</p>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-check-circle text-[#25D366] mt-1 flex-shrink-0"></i>
+                            <span class="text-gray-600">Grupe mini, mică, mijlocie și mare</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-check-circle text-[#25D366] mt-1 flex-shrink-0"></i>
+                            <span class="text-gray-600">Programe scurte, medii și extinse</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-check-circle text-[#25D366] mt-1 flex-shrink-0"></i>
+                            <span class="text-gray-600">Activități educaționale interactive</span>
+                        </li>
+                    </ul>
+                    <a href="#curriculum" class="text-[#8B7355] font-semibold hover:text-[#A0826D] flex items-center space-x-2">
+                        <span>Vezi cum arată o zi</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="fade-in card-hover bg-white rounded-2xl p-8 border border-gray-100">
+                    <div class="w-16 h-16 bg-gradient-to-br from-[#8B7355] to-[#A0826D] rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-graduation-cap text-white text-2xl"></i>
+                    </div>
+                    <h3 class="display-font text-2xl font-bold text-gray-900 mb-4">Afterschool</h3>
+                    <p class="text-gray-600 mb-6">Clasele 0 – IV</p>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-check-circle text-[#25D366] mt-1 flex-shrink-0"></i>
+                            <span class="text-gray-600">Program normal până la 17:30</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-check-circle text-[#25D366] mt-1 flex-shrink-0"></i>
+                            <span class="text-gray-600">Program lung până la 18:30</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-check-circle text-[#25D366] mt-1 flex-shrink-0"></i>
+                            <span class="text-gray-600">Ajutor cu temele și activități creative</span>
+                        </li>
+                    </ul>
+                    <a href="#curriculum" class="text-[#8B7355] font-semibold hover:text-[#A0826D] flex items-center space-x-2">
+                        <span>Vezi cum arată o zi</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="fade-in card-hover bg-white rounded-2xl p-8 border border-gray-100">
+                    <div class="w-16 h-16 bg-gradient-to-br from-[#8B7355] to-[#A0826D] rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-palette text-white text-2xl"></i>
+                    </div>
+                    <h3 class="display-font text-2xl font-bold text-gray-900 mb-4">Cursuri opționale</h3>
+                    <p class="text-gray-600 mb-6">Programe creative și sportive</p>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-check-circle text-[#25D366] mt-1 flex-shrink-0"></i>
+                            <span class="text-gray-600">Pian și muzică</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-check-circle text-[#25D366] mt-1 flex-shrink-0"></i>
+                            <span class="text-gray-600">Robotică și technologie</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-check-circle text-[#25D366] mt-1 flex-shrink-0"></i>
+                            <span class="text-gray-600">Dans, mișcare și aikido</span>
+                        </li>
+                    </ul>
+                    <a href="#curriculum" class="text-[#8B7355] font-semibold hover:text-[#A0826D] flex items-center space-x-2">
+                        <span>Vezi cum arată o zi</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Grupe și Program -->
+    <section id="program" class="py-20 md:py-24 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="display-font text-4xl md:text-5xl font-bold text-gray-900 mb-4">Grupe și program</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Opțiuni flexibile pentru fiecare vârstă și necesitate
+                </p>
+            </div>
+            <div class="bg-gray-50 rounded-3xl p-8 mb-8 fade-in">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-6">Grupuri pe vârstă</h3>
+                        <div class="space-y-4">
+                            <div class="bg-white p-6 rounded-2xl border border-gray-100">
+                                <div class="flex items-center justify-between mb-2">
+                                    <h4 class="font-semibold text-gray-900">Mini</h4>
+                                    <span class="text-sm font-medium text-gray-600">1,5 – 2,5 ani</span>
+                                </div>
+                            </div>
+                            <div class="bg-white p-6 rounded-2xl border border-gray-100">
+                                <div class="flex items-center justify-between mb-2">
+                                    <h4 class="font-semibold text-gray-900">Mică</h4>
+                                    <span class="text-sm font-medium text-gray-600">2,5 – 3 ani</span>
+                                </div>
+                            </div>
+                            <div class="bg-white p-6 rounded-2xl border border-gray-100">
+                                <div class="flex items-center justify-between mb-2">
+                                    <h4 class="font-semibold text-gray-900">Mijlocie</h4>
+                                    <span class="text-sm font-medium text-gray-600">3 – 4 ani</span>
+                                </div>
+                            </div>
+                            <div class="bg-white p-6 rounded-2xl border border-gray-100">
+                                <div class="flex items-center justify-between mb-2">
+                                    <h4 class="font-semibold text-gray-900">Mare</h4>
+                                    <span class="text-sm font-medium text-gray-600">4 – 5 ani</span>
+                                </div>
+                            </div>
+                            <div class="bg-white p-6 rounded-2xl border border-gray-100">
+                                <div class="flex items-center justify-between mb-2">
+                                    <h4 class="font-semibold text-gray-900">After School</h4>
+                                    <span class="text-sm font-medium text-gray-600">Clasele 0 – IV</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-6">Tipuri de program</h3>
+                        <div class="space-y-4">
+                            <div class="bg-white p-6 rounded-2xl border border-gray-100">
+                                <div class="flex items-center justify-between mb-2">
+                                    <h4 class="font-semibold text-gray-900">Program scurt</h4>
+                                    <span class="text-sm font-medium text-gray-600">08:00 – 12:00</span>
+                                </div>
+                            </div>
+                            <div class="bg-white p-6 rounded-2xl border border-gray-100">
+                                <div class="flex items-center justify-between mb-2">
+                                    <h4 class="font-semibold text-gray-900">Program mediu</h4>
+                                    <span class="text-sm font-medium text-gray-600">08:00 – 12:30</span>
+                                </div>
+                            </div>
+                            <div class="bg-white p-6 rounded-2xl border border-gray-100">
+                                <div class="flex items-center justify-between mb-2">
+                                    <h4 class="font-semibold text-gray-900">Program extins</h4>
+                                    <span class="text-sm font-medium text-gray-600">08:00 – 17:30</span>
+                                </div>
+                            </div>
+                            <div class="bg-white p-6 rounded-2xl border border-gray-100">
+                                <div class="flex items-center justify-between mb-2">
+                                    <h4 class="font-semibold text-gray-900">Program lung</h4>
+                                    <span class="text-sm font-medium text-gray-600">08:00 – 18:30</span>
+                                </div>
+                            </div>
+                            <div class="bg-white p-6 rounded-2xl border border-gray-100">
+                                <div class="flex items-center justify-between mb-2">
+                                    <h4 class="font-semibold text-gray-900">Durată an educațional</h4>
+                                    <span class="text-sm font-medium text-gray-600">10 sau 11 luni</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center fade-in">
+                <a href="#contact" class="bg-[#8B7355] text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-[#A0826D] transition-all shadow-xl hover:shadow-2xl transform hover:scale-105 inline-block">
+                    Cere oferta completă
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Curriculum -->
+    <section id="curriculum" class="py-20 md:py-24 bg-gray-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="display-font text-4xl md:text-5xl font-bold text-gray-900 mb-4">Curriculum educațional</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Învățare play-based, conform curriculumului educației timpurii din 2019
+                </p>
+            </div>
+            <div class="max-w-3xl mx-auto mb-16 fade-in">
+                <h3 class="text-2xl font-bold text-gray-900 mb-6">Ce deprind copiii până la final?</h3>
+                <ul class="space-y-4">
+                    <li class="flex items-start space-x-3">
+                        <i class="fas fa-check-circle text-[#25D366] mt-1 flex-shrink-0"></i>
+                        <span class="text-gray-600">Devenire independentă și autonomie</span>
+                    </li>
+                    <li class="flex items-start space-x-3">
+                        <i class="fas fa-check-circle text-[#25D366] mt-1 flex-shrink-0"></i>
+                        <span class="text-gray-600">Comunicare orală și în scris în română și germană</span>
+                    </li>
+                    <li class="flex items-start space-x-3">
+                        <i class="fas fa-check-circle text-[#25D366] mt-1 flex-shrink-0"></i>
+                        <span class="text-gray-600">Abilități matematice de bază</span>
+                    </li>
+                    <li class="flex items-start space-x-3">
+                        <i class="fas fa-check-circle text-[#25D366] mt-1 flex-shrink-0"></i>
+                        <span class="text-gray-600">Cunoștințe de științe naturale</span>
+                    </li>
+                    <li class="flex items-start space-x-3">
+                        <i class="fas fa-check-circle text-[#25D366] mt-1 flex-shrink-0"></i>
+                        <span class="text-gray-600">Capacitate de rezolvare a problemelor</span>
+                    </li>
+                    <li class="flex items-start space-x-3">
+                        <i class="fas fa-check-circle text-[#25D366] mt-1 flex-shrink-0"></i>
+                        <span class="text-gray-600">Dezvoltare socială și emoțională</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="max-w-4xl mx-auto mb-16 fade-in">
+                <h3 class="text-2xl font-bold text-gray-900 mb-8">Cum învățăm</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-white p-6 rounded-2xl border border-gray-100">
+                        <div class="w-10 h-10 bg-[#8B7355]/10 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fas fa-comments text-[#8B7355]"></i>
+                        </div>
+                        <h4 class="font-semibold text-gray-900 mb-2">Comunicare</h4>
+                        <p class="text-sm text-gray-600">Limba română și germană, articulare, vocabular</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl border border-gray-100">
+                        <div class="w-10 h-10 bg-[#8B7355]/10 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fas fa-flask text-[#8B7355]"></i>
+                        </div>
+                        <h4 class="font-semibold text-gray-900 mb-2">Științe</h4>
+                        <p class="text-sm text-gray-600">Explorare, observație, experimentare</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl border border-gray-100">
+                        <div class="w-10 h-10 bg-[#8B7355]/10 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fas fa-paint-brush text-[#8B7355]"></i>
+                        </div>
+                        <h4 class="font-semibold text-gray-900 mb-2">Arte</h4>
+                        <p class="text-sm text-gray-600">Pictură, manualitate, creativitate</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl border border-gray-100">
+                        <div class="w-10 h-10 bg-[#8B7355]/10 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fas fa-calculator text-[#8B7355]"></i>
+                        </div>
+                        <h4 class="font-semibold text-gray-900 mb-2">Matematică</h4>
+                        <p class="text-sm text-gray-600">Numere, forme, măsuri, spațiu</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl border border-gray-100">
+                        <div class="w-10 h-10 bg-[#8B7355]/10 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fas fa-globe text-[#8B7355]"></i>
+                        </div>
+                        <h4 class="font-semibold text-gray-900 mb-2">Om și societate</h4>
+                        <p class="text-sm text-gray-600">Cultura, tradiții, comunitate</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl border border-gray-100">
+                        <div class="w-10 h-10 bg-[#8B7355]/10 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fas fa-running text-[#8B7355]"></i>
+                        </div>
+                        <h4 class="font-semibold text-gray-900 mb-2">Educație fizică</h4>
+                        <p class="text-sm text-gray-600">Mișcare, coordonanță, sporturi</p>
+                    </div>
+                </div>
+            </div>
+            <div class="max-w-3xl mx-auto fade-in">
+                <h3 class="text-2xl font-bold text-gray-900 mb-8">Obiective pe vârstă</h3>
+                <div class="space-y-4">
+                    <div class="accordion-item">
+                        <button class="accordion-toggle w-full text-left bg-white p-6 rounded-2xl border border-gray-100 flex items-center justify-between hover:bg-gray-50 transition-colors font-semibold text-gray-900">
+                            <span>2 – 3 ani</span>
+                            <i class="fas fa-chevron-down text-gray-400 transition-transform"></i>
+                        </button>
+                        <div class="accordion-content ml-0 mr-0 mt-2">
+                            <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100">
+                                <ul class="space-y-2 text-sm text-gray-600">
+                                    <li>• Formare de rutine zilnice</li>
+                                    <li>• Dezvoltarea limbajului oral</li>
+                                    <li>• Recunoașterea culorilor și formei</li>
+                                    <li>• Jocuri interactive în echipă</li>
+                                    <li>• Cunoștințe bazate pe experimentare</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-toggle w-full text-left bg-white p-6 rounded-2xl border border-gray-100 flex items-center justify-between hover:bg-gray-50 transition-colors font-semibold text-gray-900">
+                            <span>3 – 4 ani</span>
+                            <i class="fas fa-chevron-down text-gray-400 transition-transform"></i>
+                        </button>
+                        <div class="accordion-content ml-0 mr-0 mt-2">
+                            <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100">
+                                <ul class="space-y-2 text-sm text-gray-600">
+                                    <li>• Strângerea corectă a informațiilor</li>
+                                    <li>• Cunoștințe de numere și măsuri</li>
+                                    <li>• Formularea de întrebări</li>
+                                    <li>• Dezvoltarea imaginației</li>
+                                    <li>• Includerea în activități de grup</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-toggle w-full text-left bg-white p-6 rounded-2xl border border-gray-100 flex items-center justify-between hover:bg-gray-50 transition-colors font-semibold text-gray-900">
+                            <span>4 – 5 ani</span>
+                            <i class="fas fa-chevron-down text-gray-400 transition-transform"></i>
+                        </button>
+                        <div class="accordion-content ml-0 mr-0 mt-2">
+                            <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100">
+                                <ul class="space-y-2 text-sm text-gray-600">
+                                    <li>• Organizarea gândurilor</li>
+                                    <li>• Recunoașterea literelor</li>
+                                    <li>• Probleme simple de matematică</li>
+                                    <li>• Cunoștințe de natură</li>
+                                    <li>• Recunoașterea simbolurilor</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-toggle w-full text-left bg-white p-6 rounded-2xl border border-gray-100 flex items-center justify-between hover:bg-gray-50 transition-colors font-semibold text-gray-900">
+                            <span>5 – 6 ani</span>
+                            <i class="fas fa-chevron-down text-gray-400 transition-transform"></i>
+                        </button>
+                        <div class="accordion-content ml-0 mr-0 mt-2">
+                            <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100">
+                                <ul class="space-y-2 text-sm text-gray-600">
+                                    <li>• Trecerea la școală pregătitoare</li>
+                                    <li>• Cunoștințe de citire și scriere</li>
+                                    <li>• Probleme de adunare și scădere</li>
+                                    <li>• Expunerea argumentelor</li>
+                                    <li>• Converzarea în română și germană</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calendar -->
+    <section id="calendar" class="py-20 md:py-24 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="display-font text-4xl md:text-5xl font-bold text-gray-900 mb-4">Calendar pe anotimpuri</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Evenimente și tradiții importante din an
+                </p>
+            </div>
+            <div class="max-w-4xl mx-auto fade-in">
+                <div class="flex flex-wrap justify-center gap-4 mb-12">
+                    <button class="calendar-tab bg-[#8B7355] text-white px-6 py-3 rounded-full font-semibold text-lg hover:bg-[#A0826D] transition-all" data-season="toamna">
+                        Toamnă
+                    </button>
+                    <button class="calendar-tab bg-gray-100 text-gray-700 px-6 py-3 rounded-full font-semibold text-lg hover:bg-gray-200 transition-all" data-season="iarna">
+                        Iarnă
+                    </button>
+                    <button class="calendar-tab bg-gray-100 text-gray-700 px-6 py-3 rounded-full font-semibold text-lg hover:bg-gray-200 transition-all" data-season="primavara">
+                        Primăvară
+                    </button>
+                    <button class="calendar-tab bg-gray-100 text-gray-700 px-6 py-3 rounded-full font-semibold text-lg hover:bg-gray-200 transition-all" data-season="vara">
+                        Vară
+                    </button>
+                </div>
+                <div class="calendar-content bg-gray-50 rounded-3xl p-8">
+                    <!-- Toamna -->
+                    <div class="season-content active" id="toamna">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="bg-white p-6 rounded-2xl border border-gray-100">
+                                <h4 class="font-semibold text-gray-900 mb-2">Erntedankfest</h4>
+                                <p class="text-sm text-gray-600">Festival tradițional german, activități creative și degustări</p>
+                            </div>
+                            <div class="bg-white p-6 rounded-2xl border border-gray-100">
+                                <h4 class="font-semibold text-gray-900 mb-2">Școala începe</h4>
+                                <p class="text-sm text-gray-600">Înscrieri și adaptare la programul nou</p>
+                            </div>
+                            <div class="bg-white p-6 rounded-2xl border border-gray-100">
+                                <h4 class="font-semibold text-gray-900 mb-2">Activități în parc</h4>
+                                <p class="text-sm text-gray-600">Colectare de frunze, explorare a naturii</p>
+                            </div>
+                            <div class="bg-white p-6 rounded-2xl border border-gray-100">
+                                <h4 class="font-semibold text-gray-900 mb-2">Ziua grădiniței</h4>
+                                <p class="text-sm text-gray-600">Eveniment festiv cu spectacole și concursuri</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Iarna -->
+                    <div class="season-content hidden" id="iarna">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="bg-white p-6 rounded-2xl border border-gray-100">
+                                <h4 class="font-semibold text-gray-900 mb-2">Lampioane</h4>
+                                <p class="text-sm text-gray-600">Traditie germană de iarnă, decorări cu lumini</p>
+                            </div>
+                            <div class="bg-white p-6 rounded-2xl border border-gray-100">
+                                <h4 class="font-semibold text-gray-900 mb-2">Târg de Crăciun</h4>
+                                <p class="text-sm text-gray-600">Vânzări de cadouri, decoruri și bijuterii</p>
+                            </div>
+                            <div class="bg-white p-6 rounded-2xl border border-gray-100">
+                                <h4 class="font-semibold text-gray-900 mb-2">Găști de Crăciun</h4>
+                                <p class="text-sm text-gray-600">Evenimente pentru copii și părinți</p>
+                            </div>
+                            <div class="bg-white p-6 rounded-2xl border border-gray-100">
+                                <h4 class="font-semibold text-gray-900 mb-2">Ziua Regelelor</h4>
+                                <p class="text-sm text-gray-600">Tradiție germană, oua colorate și surprize</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Primavara -->
+                    <div class="season-content hidden" id="primavara">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="bg-white p-6 rounded-2xl border border-gray-100">
+                                <h4 class="font-semibold text-gray-900 mb-2">Mărțișoare caritabile</h4>
+                                <p class="text-sm text-gray-600">Vânzări de mărțișoare pentru cazuri de urgență</p>
+                            </div>
+                            <div class="bg-white p-6 rounded-2xl border border-gray-100">
+                                <h4 class="font-semibold text-gray-900 mb-2">Easter Eggs hunt</h4>
+                                <p class="text-sm text-gray-600">Joc tradițional de găsire de oua colorate</p>
+                            </div>
+                            <div class="bg-white p-6 rounded-2xl border border-gray-100">
+                                <h4 class="font-semibold text-gray-900 mb-2">Muzeul Copiilor</h4>
+                                <p class="text-sm text-gray-600">Vizită educațională cu activități interactive</p>
+                            </div>
+                            <div class="bg-white p-6 rounded-2xl border border-gray-100">
+                                <h4 class="font-semibold text-gray-900 mb-2">Plantarea flori</h4>
+                                <p class="text-sm text-gray-600">Activitate pentru protejarea mediului</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Vara -->
+                    <div class="season-content hidden" id="vara">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="bg-white p-6 rounded-2xl border border-gray-100">
+                                <h4 class="font-semibold text-gray-900 mb-2">Sommerfest</h4>
+                                <p class="text-sm text-gray-600">Festival de vară cu activități și degustări</p>
+                            </div>
+                            <div class="bg-white p-6 rounded-2xl border border-gray-100">
+                                <h4 class="font-semibold text-gray-900 mb-2">Activități de vară</h4>
+                                <p class="text-sm text-gray-600">Jocuri în aer liber, excursii, activități creative</p>
+                            </div>
+                            <div class="bg-white p-6 rounded-2xl border border-gray-100">
+                                <h4 class="font-semibold text-gray-900 mb-2">Ziua Gradiștii</h4>
+                                <p class="text-sm text-gray-600">Eveniment anual pentru comunitate</p>
+                            </div>
+                            <div class="bg-white p-6 rounded-2xl border border-gray-100">
+                                <h4 class="font-semibold text-gray-900 mb-2">Încheierea anului</h4>
+                                <p class="text-sm text-gray-600">Specacole, diplome și prezentări</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-12 fade-in">
+                <div class="inline-flex items-center space-x-2 bg-[#8B7355]/10 px-6 py-3 rounded-full">
+                    <i class="fas fa-heart text-[#8B7355]"></i>
+                    <span class="text-[#8B7355] font-semibold">Comunitate și caritate</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Meniu -->
+    <section id="meniu" class="py-20 md:py-24 bg-gray-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto fade-in">
+                <div class="text-center mb-16">
+                    <h2 class="display-font text-4xl md:text-5xl font-bold text-gray-900 mb-4">Meniu nutriționist</h2>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                        Meniu pe 4 săptămâni, echilibrat și delicios
+                    </p>
+                </div>
+                <div class="bg-white rounded-3xl p-8 soft-shadow">
+                    <div class="flex flex-wrap justify-center gap-4 mb-8">
+                        <button class="menu-tab bg-[#8B7355] text-white px-6 py-3 rounded-full font-semibold text-lg hover:bg-[#A0826D] transition-all" data-week="week1">
+                            Săptămâna 1
+                        </button>
+                        <button class="menu-tab bg-gray-100 text-gray-700 px-6 py-3 rounded-full font-semibold text-lg hover:bg-gray-200 transition-all" data-week="week2">
+                            Săptămâna 2
+                        </button>
+                        <button class="menu-tab bg-gray-100 text-gray-700 px-6 py-3 rounded-full font-semibold text-lg hover:bg-gray-200 transition-all" data-week="week3">
+                            Săptămâna 3
+                        </button>
+                        <button class="menu-tab bg-gray-100 text-gray-700 px-6 py-3 rounded-full font-semibold text-lg hover:bg-gray-200 transition-all" data-week="week4">
+                            Săptămâna 4
+                        </button>
+                    </div>
+                    <div class="menu-content">
+                        <!-- Saptamana 1 -->
+                        <div class="week-content active" id="week1">
+                            <div class="grid md:grid-cols-5 gap-4 mb-8">
+                                <div class="text-center p-4 rounded-2xl bg-gray-50">
+                                    <h4 class="font-semibold text-gray-900 mb-2">Luni</h4>
+                                    <p class="text-sm text-gray-600 mb-1">Supe: legume</p>
+                                    <p class="text-sm text-gray-600 mb-1">Prat: piept de pui</p>
+                                    <p class="text-sm text-gray-600">Desert: fructe</p>
+                                </div>
+                                <div class="text-center p-4 rounded-2xl bg-gray-50">
+                                    <h4 class="font-semibold text-gray-900 mb-2">Marți</h4>
+                                    <p class="text-sm text-gray-600 mb-1">Supe: ciuperci</p>
+                                    <p class="text-sm text-gray-600 mb-1">Prat: ton în conserve</p>
+                                    <p class="text-sm text-gray-600">Desert: iogurt</p>
+                                </div>
+                                <div class="text-center p-4 rounded-2xl bg-gray-50">
+                                    <h4 class="font-semibold text-gray-900 mb-2">Miercuri</h4>
+                                    <p class="text-sm text-gray-600 mb-1">Supe: carne</p>
+                                    <p class="text-sm text-gray-600 mb-1">Prat: ouă de pasăre</p>
+                                    <p class="text-sm text-gray-600">Desert: frisca de fructe</p>
+                                </div>
+                                <div class="text-center p-4 rounded-2xl bg-gray-50">
+                                    <h4 class="font-semibold text-gray-900 mb-2">Joi</h4>
+                                    <p class="text-sm text-gray-600 mb-1">Supe: legume</p>
+                                    <p class="text-sm text-gray-600 mb-1">Prat: ciuperci legume</p>
+                                    <p class="text-sm text-gray-600">Desert: fructe</p>
+                                </div>
+                                <div class="text-center p-4 rounded-2xl bg-gray-50">
+                                    <h4 class="font-semibold text-gray-900 mb-2">Vineri</h4>
+                                    <p class="text-sm text-gray-600 mb-1">Supe: sote</p>
+                                    <p class="text-sm text-gray-600 mb-1">Prat: de casa</p>
+                                    <p class="text-sm text-gray-600">Desert: iogurt</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Saptamana 2 -->
+                        <div class="week-content hidden" id="week2">
+                            <div class="grid md:grid-cols-5 gap-4 mb-8">
+                                <div class="text-center p-4 rounded-2xl bg-gray-50">
+                                    <h4 class="font-semibold text-gray-900 mb-2">Luni</h4>
+                                    <p class="text-sm text-gray-600 mb-1">Supe: legume</p>
+                                    <p class="text-sm text-gray-600 mb-1">Prat: piept de pui</p>
+                                    <p class="text-sm text-gray-600">Desert: fructe</p>
+                                </div>
+                                <div class="text-center p-4 rounded-2xl bg-gray-50">
+                                    <h4 class="font-semibold text-gray-900 mb-2">Marți</h4>
+                                    <p class="text-sm text-gray-600 mb-1">Supe: ciuperci</p>
+                                    <p class="text-sm text-gray-600 mb-1">Prat: ton în conserve</p>
+                                    <p class="text-sm text-gray-600">Desert: iogurt</p>
+                                </div>
+                                <div class="text-center p-4 rounded-2xl bg-gray-50">
+                                    <h4 class="font-semibold text-gray-900 mb-2">Miercuri</h4>
+                                    <p class="text-sm text-gray-600 mb-1">Supe: carne</p>
+                                    <p class="text-sm text-gray-600 mb-1">Prat: ouă de pasăre</p>
+                                    <p class="text-sm text-gray-600">Desert: frisca de fructe</p>
+                                </div>
+                                <div class="text-center p-4 rounded-2xl bg-gray-50">
+                                    <h4 class="font-semibold text-gray-900 mb-2">Joi</h4>
+                                    <p class="text-sm text-gray-600 mb-1">Supe: legume</p>
+                                    <p class="text-sm text-gray-600 mb-1">Prat: ciuperci legume</p>
+                                    <p class="text-sm text-gray-600">Desert: fructe</p>
+                                </div>
+                                <div class="text-center p-4 rounded-2xl bg-gray-50">
+                                    <h4 class="font-semibold text-gray-900 mb-2">Vineri</h4>
+                                    <p class="text-sm text-gray-600 mb-1">Supe: sote</p>
+                                    <p class="text-sm text-gray-600 mb-1">Prat: de casa</p>
+                                    <p class="text-sm text-gray-600">Desert: iogurt</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Saptamana 3 -->
+                        <div class="week-content hidden" id="week3">
+                            <div class="grid md:grid-cols-5 gap-4 mb-8">
+                                <div class="text-center p-4 rounded-2xl bg-gray-50">
+                                    <h4 class="font-semibold text-gray-900 mb-2">Luni</h4>
+                                    <p class="text-sm text-gray-600 mb-1">Supe: legume</p>
+                                    <p class="text-sm text-gray-600 mb-1">Prat: piept de pui</p>
+                                    <p class="text-sm text-gray-600">Desert: fructe</p>
+                                </div>
+                                <div class="text-center p-4 rounded-2xl bg-gray-50">
+                                    <h4 class="font-semibold text-gray-900 mb-2">Marți</h4>
+                                    <p class="text-sm text-gray-600 mb-1">Supe: ciuperci</p>
+                                    <p class="text-sm text-gray-600 mb-1">Prat: ton în conserve</p>
+                                    <p class="text-sm text-gray-600">Desert: iogurt</p>
+                                </div>
+                                <div class="text-center p-4 rounded-2xl bg-gray-50">
+                                    <h4 class="font-semibold text-gray-900 mb-2">Miercuri</h4>
+                                    <p class="text-sm text-gray-600 mb-1">Supe: carne</p>
+                                    <p class="text-sm text-gray-600 mb-1">Prat: ouă de pasăre</p>
+                                    <p class="text-sm text-gray-600">Desert: frisca de fructe</p>
+                                </div>
+                                <div class="text-center p-4 rounded-2xl bg-gray-50">
+                                    <h4 class="font-semibold text-gray-900 mb-2">Joi</h4>
+                                    <p class="text-sm text-gray-600 mb-1">Supe: legume</p>
+                                    <p class="text-sm text-gray-600 mb-1">Prat: ciuperci legume</p>
+                                    <p class="text-sm text-gray-600">Desert: fructe</p>
+                                </div>
+                                <div class="text-center p-4 rounded-2xl bg-gray-50">
+                                    <h4 class="font-semibold text-gray-900 mb-2">Vineri</h4>
+                                    <p class="text-sm text-gray-600 mb-1">Supe: sote</p>
+                                    <p class="text-sm text-gray-600 mb-1">Prat: de casa</p>
+                                    <p class="text-sm text-gray-600">Desert: iogurt</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Saptamana 4 -->
+                        <div class="week-content hidden" id="week4">
+                            <div class="grid md:grid-cols-5 gap-4 mb-8">
+                                <div class="text-center p-4 rounded-2xl bg-gray-50">
+                                    <h4 class="font-semibold text-gray-900 mb-2">Luni</h4>
+                                    <p class="text-sm text-gray-600 mb-1">Supe: legume</p>
+                                    <p class="text-sm text-gray-600 mb-1">Prat: piept de pui</p>
+                                    <p class="text-sm text-gray-600">Desert: fructe</p>
+                                </div>
+                                <div class="text-center p-4 rounded-2xl bg-gray-50">
+                                    <h4 class="font-semibold text-gray-900 mb-2">Marți</h4>
+                                    <p class="text-sm text-gray-600 mb-1">Supe: ciuperci</p>
+                                    <p class="text-sm text-gray-600 mb-1">Prat: ton în conserve</p>
+                                    <p class="text-sm text-gray-600">Desert: iogurt</p>
+                                </div>
+                                <div class="text-center p-4 rounded-2xl bg-gray-50">
+                                    <h4 class="font-semibold text-gray-900 mb-2">Miercuri</h4>
+                                    <p class="text-sm text-gray-600 mb-1">Supe: carne</p>
+                                    <p class="text-sm text-gray-600 mb-1">Prat: ouă de pasăre</p>
+                                    <p class="text-sm text-gray-600">Desert: frisca de fructe</p>
+                                </div>
+                                <div class="text-center p-4 rounded-2xl bg-gray-50">
+                                    <h4 class="font-semibold text-gray-900 mb-2">Joi</h4>
+                                    <p class="text-sm text-gray-600 mb-1">Supe: legume</p>
+                                    <p class="text-sm text-gray-600 mb-1">Prat: ciuperci legume</p>
+                                    <p class="text-sm text-gray-600">Desert: fructe</p>
+                                </div>
+                                <div class="text-center p-4 rounded-2xl bg-gray-50">
+                                    <h4 class="font-semibold text-gray-900 mb-2">Vineri</h4>
+                                    <p class="text-sm text-gray-600 mb-1">Supe: sote</p>
+                                    <p class="text-sm text-gray-600 mb-1">Prat: de casa</p>
+                                    <p class="text-sm text-gray-600">Desert: iogurt</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <a href="#" class="bg-[#8B7355] text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-[#A0826D] transition-all shadow-xl hover:shadow-2xl transform hover:scale-105 inline-block">
+                            Vezi meniul complet
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimoniale -->
+    <section id="testimoniale" class="py-20 md:py-24 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="display-font text-4xl md:text-5xl font-bold text-gray-900 mb-4">Testimoniale</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Ce spun părinții despre noi
+                </p>
+            </div>
+            <div class="max-w-4xl mx-auto fade-in">
+                <div class="testimonial-carousel space-y-6">
+                    <div class="testimonial-card p-8 rounded-3xl">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 bg-gradient-to-br from-[#8B7355] to-[#A0826D] rounded-full flex items-center justify-center text-white font-bold">
+                                    AR
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900">Alexandra R.</h4>
+                                    <p class="text-sm text-gray-600">Părinte al unui copil de 4 ani</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-1 text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 italic">
+                            „Compania Mică este o alegere excelentă! Copilul meu a devenit mai independent și comunicativ. Educațiile sunt fantastice!”
+                        </p>
+                    </div>
+                    <div class="testimonial-card p-8 rounded-3xl">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 bg-gradient-to-br from-[#8B7355] to-[#A0826D] rounded-full flex items-center justify-center text-white font-bold">
+                                    MS
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900">Mihai S.</h4>
+                                    <p class="text-sm text-gray-600">Părinte al unui copil de 3 ani</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-1 text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 italic">
+                            „Echipa este incredibilă! Au o abordare caldă și profesională. Copilul meu se simte ca acasă.”
+                        </p>
+                    </div>
+                    <div class="testimonial-card p-8 rounded-3xl">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 bg-gradient-to-br from-[#8B7355] to-[#A0826D] rounded-full flex items-center justify-center text-white font-bold">
+                                    EB
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900">Elena B.</h4>
+                                    <p class="text-sm text-gray-600">Părinte al unui copil de 5 ani</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-1 text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 italic">
+                            „Într-un mediu atât de cald și prietenos, copilul își descoperă pasiunile. De recomandat cu încredere!”
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-12 fade-in">
+                <div class="bg-gray-50 rounded-3xl p-6 max-w-4xl mx-auto">
+                    <h3 class="font-bold text-gray-900 text-xl mb-4">Rezultate: germană, autonomie, stare de bine</h3>
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-[#8B7355] mb-2">95%</div>
+                            <p class="text-sm text-gray-600">Copiii obțin nivelul A1-A2 în germană</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-[#8B7355] mb-2">100%</div>
+                            <p class="text-sm text-gray-600">Independență completă în activități zilnice</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-[#8B7355] mb-2">100%</div>
+                            <p class="text-sm text-gray-600">Sunteți în siguranță și stare de bine</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resurse -->
+    <section id="resurse" class="py-20 md:py-24 bg-gray-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="display-font text-4xl md:text-5xl font-bold text-gray-900 mb-4">Resurse pentru părinți</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Articole și gânduri utile pentru creșterea copilului
+                </p>
+            </div>
+            <div class="max-w-4xl mx-auto mb-8 fade-in">
+                <div class="relative">
+                    <input type="text" placeholder="Căutați articolele (ex. germană, alimentație, somn)" class="w-full pl-12 pr-4 py-4 rounded-2xl bg-white border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#8B7355] focus:border-transparent shadow-lg">
+                    <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                </div>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 fade-in">
+                <div class="card-hover bg-white rounded-2xl overflow-hidden border border-gray-100">
+                    <div class="h-48 bg-gradient-to-br from-[#8B7355] to-[#A0826D]"></div>
+                    <div class="p-6">
+                        <div class="flex items-center space-x-2 text-sm text-gray-600 mb-3">
+                            <i class="fas fa-book"></i>
+                            <span>Educație</span>
+                        </div>
+                        <h3 class="font-bold text-gray-900 mb-3">Cum pregătim copilul pentru grădiniță</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            Tips pentru a face tranziția mai ușoară
+                        </p>
+                        <a href="#" class="text-[#8B7355] font-semibold text-sm hover:text-[#A0826D]">
+                            Citeste mai mult →
+                        </a>
+                    </div>
+                </div>
+                <div class="card-hover bg-white rounded-2xl overflow-hidden border border-gray-100">
+                    <div class="h-48 bg-gradient-to-br from-[#A0826D] to-[#D4A373]"></div>
+                    <div class="p-6">
+                        <div class="flex items-center space-x-2 text-sm text-gray-600 mb-3">
+                            <i class="fas fa-lightbulb"></i>
+                            <span>Din experiență</span>
+                        </div>
+                        <h3 class="font-bold text-gray-900 mb-3">Cum învățam limba germană</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            Metodele noastre eficiente și plăcute
+                        </p>
+                        <a href="#" class="text-[#8B7355] font-semibold text-sm hover:text-[#A0826D]">
+                            Citeste mai mult →
+                        </a>
+                    </div>
+                </div>
+                <div class="card-hover bg-white rounded-2xl overflow-hidden border border-gray-100">
+                    <div class="h-48 bg-gradient-to-br from-[#D4A373] to-[#8B7355]"></div>
+                    <div class="p-6">
+                        <div class="flex items-center space-x-2 text-sm text-gray-600 mb-3">
+                            <i class="fas fa-heart"></i>
+                            <span>Educație</span>
+                        </div>
+                        <h3 class="font-bold text-gray-900 mb-3">Cum stimulez creativitatea copilului</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            Activități simple și plăcute
+                        </p>
+                        <a href="#" class="text-[#8B7355] font-semibold text-sm hover:text-[#A0826D]">
+                            Citeste mai mult →
+                        </a>
+                    </div>
+                </div>
+                <div class="card-hover bg-white rounded-2xl overflow-hidden border border-gray-100">
+                    <div class="h-48 bg-gradient-to-br from-[#8B7355] to-[#D4A373]"></div>
+                    <div class="p-6">
+                        <div class="flex items-center space-x-2 text-sm text-gray-600 mb-3">
+                            <i class="fas fa-brain"></i>
+                            <span>Din experiență</span>
+                        </div>
+                        <h3 class="font-bold text-gray-900 mb-3">Dezvoltarea cognitivă până la 6 ani</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            Ce ar trebui să ştiți părinţii
+                        </p>
+                        <a href="#" class="text-[#8B7355] font-semibold text-sm hover:text-[#A0826D]">
+                            Citeste mai mult →
+                        </a>
+                    </div>
+                </div>
+                <div class="card-hover bg-white rounded-2xl overflow-hidden border border-gray-100">
+                    <div class="h-48 bg-gradient-to-br from-[#A0826D] to-[#8B7355]"></div>
+                    <div class="p-6">
+                        <div class="flex items-center space-x-2 text-sm text-gray-600 mb-3">
+                            <i class="fas fa-utensils"></i>
+                            <span>Educație</span>
+                        </div>
+                        <h3 class="font-bold text-gray-900 mb-3">Nutriție sănătoasă pentru copii</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            Alimente recomandate și rețete simple
+                        </p>
+                        <a href="#" class="text-[#8B7355] font-semibold text-sm hover:text-[#A0826D]">
+                            Citeste mai mult →
+                        </a>
+                    </div>
+                </div>
+                <div class="card-hover bg-white rounded-2xl overflow-hidden border border-gray-100">
+                    <div class="h-48 bg-gradient-to-br from-[#D4A373] to-[#A0826D]"></div>
+                    <div class="p-6">
+                        <div class="flex items-center space-x-2 text-sm text-gray-600 mb-3">
+                            <i class="fas fa-sun"></i>
+                            <span>Din experiență</span>
+                        </div>
+                        <h3 class="font-bold text-gray-900 mb-3">Importanța activității fizice</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            Cum să încurajați copilul să se miște
+                        </p>
+                        <a href="#" class="text-[#8B7355] font-semibold text-sm hover:text-[#A0826D]">
+                            Citeste mai mult →
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-12 fade-in">
+                <a href="#" class="bg-[#8B7355] text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-[#A0826D] transition-all shadow-xl hover:shadow-2xl transform hover:scale-105 inline-block">
+                    Vezi toate articolele
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coaching -->
+    <section id="coaching" class="py-20 md:py-24 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto fade-in">
+                <div class="bg-gradient-to-r from-[#8B7355] to-[#A0826D] rounded-3xl p-8 md:p-12 text-white">
+                    <div class="grid md:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <h2 class="display-font text-3xl md:text-4xl font-bold mb-6">Coaching pentru părinți</h2>
+                            <p class="text-lg text-white/90 mb-6">
+                                Sesiuni de coaching pentru părinți, cu accent pe creșterea copilului și dezvoltarea personală.
+                            </p>
+                            <div class="space-y-4 mb-8">
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check-circle text-white mt-1 flex-shrink-0"></i>
+                                    <span class="text-white/90">Coaching individualizat pentru familii</span>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check-circle text-white mt-1 flex-shrink-0"></i>
+                                    <span class="text-white/90">Consiliere de dezvoltare personală</span>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <i class="fas fa-check-circle text-white mt-1 flex-shrink-0"></i>
+                                    <span class="text-white/90">Sesiuni online și offline</span>
+                                </div>
+                            </div>
+                            <a href="#contact" class="bg-white text-[#8B7355] px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-100 transition-all shadow-xl hover:shadow-2xl transform hover:scale-105 inline-block">
+                                Programează o sesiune
+                            </a>
+                        </div>
+                        <div class="relative">
+                            <div class="bg-white/20 backdrop-blur-sm rounded-2xl p-8">
+                                <div class="text-center">
+                                    <div class="text-4xl font-bold mb-4">10+ ani</div>
+                                    <p class="text-white/90 mb-2">De experiență în coaching</p>
+                                </div>
+                                <div class="grid grid-cols-2 gap-4 mt-8">
+                                    <div class="text-center">
+                                        <div class="text-2xl font-bold mb-2">500+</div>
+                                        <p class="text-white/90 text-sm">Sesiuni efectuate</p>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="text-2xl font-bold mb-2">95%</div>
+                                        <p class="text-white/90 text-sm">Satisfacție clienti</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Acreditare -->
+    <section class="py-16 md:py-20 bg-gray-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto fade-in">
+                <div class="text-center mb-12">
+                    <h2 class="display-font text-3xl md:text-4xl font-bold text-gray-900 mb-4">Acreditare și documente</h2>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                        Garantii de calitate și transparență
+                    </p>
+                </div>
+                <div class="bg-white rounded-3xl p-8 soft-shadow">
+                    <div class="flex flex-col md:flex-row items-center justify-between gap-8">
+                        <div class="flex-1 text-center md:text-left">
+                            <div class="inline-flex items-center space-x-2 bg-[#8B7355]/10 px-6 py-3 rounded-full mb-4">
+                                <i class="fas fa-certificate text-[#8B7355]"></i>
+                                <span class="text-[#8B7355] font-semibold">Acreditare oficială</span>
+                            </div>
+                            <p class="text-xl font-semibold text-gray-900 mb-2">Acreditată prin OM 5362/28.06.2024</p>
+                            <p class="text-gray-600">
+                                Respectăm standardele educaționale pentru grădinițe și scoale primare.
+                            </p>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="font-semibold text-gray-900 mb-6">Documentație și transparență</h3>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <a href="#" class="flex items-center space-x-3 p-4 rounded-2xl bg-gray-50 hover:bg-[#8B7355]/10 transition-colors group">
+                                    <i class="fas fa-file-alt text-[#8B7355] group-hover:text-[#A0826D]"></i>
+                                    <span class="text-gray-600 group-hover:text-[#8B7355]">Documentație instituțională</span>
+                                </a>
+                                <a href="#" class="flex items-center space-x-3 p-4 rounded-2xl bg-gray-50 hover:bg-[#8B7355]/10 transition-colors group">
+                                    <i class="fas fa-certificate text-[#8B7355] group-hover:text-[#A0826D]"></i>
+                                    <span class="text-gray-600 group-hover:text-[#8B7355]">RAEI</span>
+                                </a>
+                                <a href="#" class="flex items-center space-x-3 p-4 rounded-2xl bg-gray-50 hover:bg-[#8B7355]/10 transition-colors group">
+                                    <i class="fas fa-file-contract text-[#8B7355] group-hover:text-[#A0826D]"></i>
+                                    <span class="text-gray-600 group-hover:text-[#8B7355]">ROF</span>
+                                </a>
+                                <a href="#" class="flex items-center space-x-3 p-4 rounded-2xl bg-gray-50 hover:bg-[#8B7355]/10 transition-colors group">
+                                    <i class="fas fa-book text-[#8B7355] group-hover:text-[#A0826D]"></i>
+                                    <span class="text-gray-600 group-hover:text-[#8B7355]">Regulament intern</span>
+                                </a>
+                                <a href="#" class="flex items-center space-x-3 p-4 rounded-2xl bg-gray-50 hover:bg-[#8B7355]/10 transition-colors group">
+                                    <i class="fas fa-chart-line text-[#8B7355] group-hover:text-[#A0826D]"></i>
+                                    <span class="text-gray-600 group-hover:text-[#8B7355]">Plan de dezvoltare</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-20 md:py-24 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="display-font text-4xl md:text-5xl font-bold text-gray-900 mb-4">Contact</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Suntem aici pentru tine
+                </p>
+            </div>
+            <div class="grid lg:grid-cols-2 gap-12 fade-in">
+                <div>
+                    <div class="mb-12">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-8">Informații de contact</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-[#8B7355]/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-map-marker-alt text-[#8B7355]"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900 mb-1">Adresă</h4>
+                                    <p class="text-gray-600">Strada Someș 15, Sector 2, București</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-[#8B7355]/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-phone text-[#8B7355]"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900 mb-1">Telefon</h4>
+                                    <p class="text-gray-600">021 123 4567</p>
+                                    <p class="text-gray-600">0722 123 456</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-[#8B7355]/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-envelope text-[#8B7355]"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900 mb-1">Email</h4>
+                                    <p class="text-gray-600">contact@companiamica.ro</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-[#8B7355]/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-clock text-[#8B7355]"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900 mb-1">Program</h4>
+                                    <p class="text-gray-600">Luni – Vineri: 07:30 – 18:30</p>
+                                    <p class="text-gray-600">Sâmbătă – Duminică: închis</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-12">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-8">Cariere</h3>
+                        <p class="text-gray-600 mb-6">
+                            Dacă ai pasiune pentru educație și dorești să faci parte din echipa noastră, trimite-ne CV-ul.
+                        </p>
+                        <a href="#contact" class="bg-[#8B7355] text-white px-8 py-3 rounded-full font-semibold hover:bg-[#A0826D] transition-all shadow-lg hover:shadow-xl transform hover:scale-105 inline-block">
+                            Trimite CV
+                        </a>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-8">Urmăriți-ne</h3>
+                        <div class="flex space-x-4">
+                            <a href="#" class="w-12 h-12 bg-[#8B7355]/10 rounded-xl flex items-center justify-center text-[#8B7355] hover:bg-[#8B7355] hover:text-white transition-colors">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="w-12 h-12 bg-[#8B7355]/10 rounded-xl flex items-center justify-center text-[#8B7355] hover:bg-[#8B7355] hover:text-white transition-colors">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="w-12 h-12 bg-[#8B7355]/10 rounded-xl flex items-center justify-center text-[#8B7355] hover:bg-[#8B7355] hover:text-white transition-colors">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="bg-gray-50 rounded-3xl p-8">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-8">Trimiteți un mesaj</h3>
+                        <form class="space-y-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Nume și prenume</label>
+                                <input type="text" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#8B7355] focus:border-transparent">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Număr de telefon</label>
+                                <input type="tel" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#8B7355] focus:border-transparent">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Mesaj</label>
+                                <textarea rows="4" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#8B7355] focus:border-transparent resize-none"></textarea>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <input type="checkbox" required id="consent" class="mt-1 w-4 h-4 text-[#8B7355] border-gray-300 rounded focus:ring-[#8B7355]">
+                                <label for="consent" class="text-sm text-gray-600">
+                                    Sunt de acord cu prelucrarea datelor personale conform politicelor de confidențialitate.
+                                </label>
+                            </div>
+                            <button type="submit" class="w-full bg-[#8B7355] text-white py-4 rounded-xl font-semibold text-lg hover:bg-[#A0826D] transition-all shadow-xl hover:shadow-2xl transform hover:scale-105">
+                                Trimite mesaj
+                            </button>
+                        </form>
+                    </div>
+                    <div class="mt-8 h-64 bg-gray-200 rounded-2xl overflow-hidden">
+                        <div class="w-full h-full flex items-center justify-center bg-gray-100">
+                            <p class="text-gray-500">Harta Google Maps</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-16">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-12">
+                <div>
+                    <div class="flex items-center space-x-2 mb-6">
+                        <div class="w-12 h-12 bg-[#8B7355] rounded-full flex items-center justify-center">
+                            <span class="text-white font-bold display-font text-xl">CM</span>
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="text-white font-bold display-font text-xl">Compania Mică</span>
+                            <span class="text-xs text-gray-400">Grădiniță & Afterschool</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 mb-6">
+                        O primă casă pentru copilul tău, în Sector 2, lângă Parcul Circului.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center text-gray-400 hover:bg-[#8B7355] hover:text-white transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center text-gray-400 hover:bg-[#8B7355] hover:text-white transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center text-gray-400 hover:bg-[#8B7355] hover:text-white transition-colors">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-6">Linkuri rapide</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#noi" class="text-gray-400 hover:text-[#8B7355] transition-colors">Noi</a></li>
+                        <li><a href="#programe" class="text-gray-400 hover:text-[#8B7355] transition-colors">Programe</a></li>
+                        <li><a href="#curriculum" class="text-gray-400 hover:text-[#8B7355] transition-colors">Curriculum</a></li>
+                        <li><a href="#calendar" class="text-gray-400 hover:text-[#8B7355] transition-colors">Calendar</a></li>
+                        <li><a href="#meniu" class="text-gray-400 hover:text-[#8B7355] transition-colors">Meniu</a></li>
+                        <li><a href="#resurse" class="text-gray-400 hover:text-[#8B7355] transition-colors">Resurse</a></li>
+                        <li><a href="#coaching" class="text-gray-400 hover:text-[#8B7355] transition-colors">Coaching</a></li>
+                        <li><a href="#testimoniale" class="text-gray-400 hover:text-[#8B7355] transition-colors">Testimoniale</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-[#8B7355] transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-6">Contact</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-map-marker-alt text-[#8B7355] mt-1 flex-shrink-0"></i>
+                            <span class="text-gray-400">Strada Someș 15, Sector 2, București</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-phone text-[#8B7355] mt-1 flex-shrink-0"></i>
+                            <span class="text-gray-400">021 123 4567</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-phone text-[#8B7355] mt-1 flex-shrink-0"></i>
+                            <span class="text-gray-400">0722 123 456</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-envelope text-[#8B7355] mt-1 flex-shrink-0"></i>
+                            <span class="text-gray-400">contact@companiamica.ro</span>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-6">Documente</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-[#8B7355] transition-colors">Documentație instituțională</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-[#8B7355] transition-colors">RAEI</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-[#8B7355] transition-colors">ROF</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-[#8B7355] transition-colors">Regulament intern</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-[#8B7355] transition-colors">Plan de dezvoltare</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-[#8B7355] transition-colors">Politica de confidențialitate</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-16 pt-8 text-center text-gray-400 text-sm">
+                <p>© 2024 Compania Mică - Grădiniță și Afterschool. Toate drepturile rezervate.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
