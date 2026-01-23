@@ -10,6 +10,22 @@ document.addEventListener('DOMContentLoaded', function() {
         icon.classList.toggle('fa-times');
     });
 
+    // Modal functionality
+    window.openModal = function() {
+        document.getElementById('visitModal').classList.add('active');
+    };
+
+    window.closeModal = function() {
+        document.getElementById('visitModal').classList.remove('active');
+    };
+
+    // Close modal when clicking outside
+    document.getElementById('visitModal').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeModal();
+        }
+    });
+
     // Accordion functionality
     const accordionToggles = document.querySelectorAll('.accordion-toggle');
     accordionToggles.forEach(toggle => {
@@ -28,56 +44,6 @@ document.addEventListener('DOMContentLoaded', function() {
             // Toggle current accordion item
             content.classList.toggle('active');
             icon.classList.toggle('rotate-180');
-        });
-    });
-
-    // Calendar tabs
-    const calendarTabs = document.querySelectorAll('.calendar-tab');
-    const seasonContents = document.querySelectorAll('.season-content');
-
-    calendarTabs.forEach(tab => {
-        tab.addEventListener('click', function() {
-            const season = this.getAttribute('data-season');
-            
-            // Update tab styles
-            calendarTabs.forEach(t => {
-                t.classList.remove('bg-[#8B7355]', 'text-white');
-                t.classList.add('bg-gray-100', 'text-gray-700');
-            });
-            this.classList.remove('bg-gray-100', 'text-gray-700');
-            this.classList.add('bg-[#8B7355]', 'text-white');
-            
-            // Show corresponding season content
-            seasonContents.forEach(content => {
-                content.classList.add('hidden');
-            });
-            document.getElementById(season).classList.remove('hidden');
-            document.getElementById(season).classList.add('active');
-        });
-    });
-
-    // Menu tabs
-    const menuTabs = document.querySelectorAll('.menu-tab');
-    const weekContents = document.querySelectorAll('.week-content');
-
-    menuTabs.forEach(tab => {
-        tab.addEventListener('click', function() {
-            const week = this.getAttribute('data-week');
-            
-            // Update tab styles
-            menuTabs.forEach(t => {
-                t.classList.remove('bg-[#8B7355]', 'text-white');
-                t.classList.add('bg-gray-100', 'text-gray-700');
-            });
-            this.classList.remove('bg-gray-100', 'text-gray-700');
-            this.classList.add('bg-[#8B7355]', 'text-white');
-            
-            // Show corresponding week content
-            weekContents.forEach(content => {
-                content.classList.add('hidden');
-            });
-            document.getElementById(week).classList.remove('hidden');
-            document.getElementById(week).classList.add('active');
         });
     });
 
@@ -165,13 +131,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // WhatsApp floating button
-    const whatsappBtn = document.createElement('a');
-    whatsappBtn.href = 'https://wa.me/40722123456';
-    whatsappBtn.className = 'fixed bottom-24 right-6 z-50 w-16 h-16 bg-[#25D366] rounded-full flex items-center justify-center text-white text-3xl shadow-2xl hover:shadow-3xl transition-all floating';
-    whatsappBtn.innerHTML = '<i class="fab fa-whatsapp"></i>';
-    document.body.appendChild(whatsappBtn);
-
     // Add hover effect to cards
     const cards = document.querySelectorAll('.card-hover');
     cards.forEach(card => {
@@ -182,45 +141,4 @@ document.addEventListener('DOMContentLoaded', function() {
             this.style.transform = 'translateY(0)';
         });
     });
-
-    // Curriculum tabs functionality
-    const curriculumTabs = document.querySelectorAll('.curriculum-tab');
-    const categoryContents = document.querySelectorAll('.category-content');
-
-    curriculumTabs.forEach(tab => {
-        tab.addEventListener('click', function() {
-            const category = this.getAttribute('data-category');
-            
-            // Update tab styles
-            curriculumTabs.forEach(t => {
-                t.classList.remove('bg-[#8B7355]', 'text-white');
-                t.classList.add('bg-gray-100', 'text-gray-700');
-            });
-            this.classList.remove('bg-gray-100', 'text-gray-700');
-            this.classList.add('bg-[#8B7355]', 'text-white');
-            
-            // Show corresponding category content
-            categoryContents.forEach(content => {
-                content.classList.add('hidden');
-            });
-            document.getElementById(category).classList.remove('hidden');
-            document.getElementById(category).classList.add('active');
-        });
-    });
-
-    // Initialize testimonial carousel (simple version)
-    let currentTestimonial = 0;
-    const testimonials = document.querySelectorAll('.testimonial-card');
-
-    function showTestimonial(index) {
-        testimonials.forEach((testimonial, i) => {
-            testimonial.style.display = i === index ? 'block' : 'none';
-        });
-    }
-
-    // Auto-rotate testimonials
-    setInterval(() => {
-        currentTestimonial = (currentTestimonial + 1) % testimonials.length;
-        showTestimonial(currentTestimonial);
-    }, 5000);
 });
