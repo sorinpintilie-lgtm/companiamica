@@ -183,6 +183,31 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    // Curriculum tabs functionality
+    const curriculumTabs = document.querySelectorAll('.curriculum-tab');
+    const categoryContents = document.querySelectorAll('.category-content');
+
+    curriculumTabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            const category = this.getAttribute('data-category');
+            
+            // Update tab styles
+            curriculumTabs.forEach(t => {
+                t.classList.remove('bg-[#8B7355]', 'text-white');
+                t.classList.add('bg-gray-100', 'text-gray-700');
+            });
+            this.classList.remove('bg-gray-100', 'text-gray-700');
+            this.classList.add('bg-[#8B7355]', 'text-white');
+            
+            // Show corresponding category content
+            categoryContents.forEach(content => {
+                content.classList.add('hidden');
+            });
+            document.getElementById(category).classList.remove('hidden');
+            document.getElementById(category).classList.add('active');
+        });
+    });
+
     // Initialize testimonial carousel (simple version)
     let currentTestimonial = 0;
     const testimonials = document.querySelectorAll('.testimonial-card');
