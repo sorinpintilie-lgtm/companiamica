@@ -3,1387 +3,750 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Compania Mică - Grădiniță și Afterschool în Sector 2 București</title>
+    <title>Compania Mică - Grădiniță și Afterschool Sector 2</title>
     <meta name="description" content="Compania Mică - Grădiniță și Afterschool privat în Sector 2, București. Lângă Parcul Circului. Predare și în limba germană.">
+    
     <script src="https://cdn.tailwindcss.com"></script>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            orange: '#FF8E53',
+                            pink: '#FF6B6B',
+                            yellow: '#FFD54A',
+                            blue: '#4FD1C5',
+                            cream: '#FFF9F0',
+                            paper: '#ffffff'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Nunito', 'sans-serif'], 
+                    },
+                    boxShadow: {
+                        'playful': '4px 4px 0px 0px rgba(0,0,0,0.1)',
+                        'playful-hover': '7px 7px 0px 0px rgba(0,0,0,0.1)',
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
         :root {
-            --orange: #FF6B6B;
-            --pink: #FF8E53;
-            --light: #FFF7EA;
-            --dark: #0B1B3A;
-            --border: #E9E2D6;
+            /* Promo Bar Height Variable */
+            --promo-height: 40px;
         }
-        
+
+        /* --- Backgrounds --- */
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--light);
-            color: var(--dark);
+            background-color: #FFF9F0;
             background-image: 
-                radial-gradient(circle at 10% 20%, rgba(255, 107, 107, 0.05) 0%, transparent 20%),
-                radial-gradient(circle at 90% 30%, rgba(255, 142, 83, 0.05) 0%, transparent 20%),
-                radial-gradient(circle at 50% 80%, rgba(255, 107, 107, 0.05) 0%, transparent 20%),
-                radial-gradient(circle at 30% 50%, rgba(255, 142, 83, 0.05) 0%, transparent 20%);
-            position: relative;
-            overflow-x: hidden;
+                linear-gradient(#E5E5F7 1px, transparent 1px),
+                linear-gradient(90deg, #E5E5F7 1px, transparent 1px);
+            background-size: 40px 40px;
+            color: #4A5568;
+            /* Adjust body padding to prevent content hiding behind fixed bar */
+            padding-top: calc(var(--promo-height) + env(safe-area-inset-top));
         }
-        
-        body::before {
-            content: '';
+
+        /* --- PROMO BAR STYLES --- */
+        .promo-bar {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 10% 10%, rgba(0, 0, 0, 0.03) 0%, transparent 30%),
-                radial-gradient(circle at 90% 90%, rgba(0, 0, 0, 0.03) 0%, transparent 30%);
-            pointer-events: none;
-            z-index: 0;
-            mix-blend-mode: multiply;
-        }
-        
-        /* Paper grain texture */
-        body::after {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
-            pointer-events: none;
-            z-index: 0;
-        }
-        
-        .display-font {
-            font-family: 'Playfair Display', serif;
-        }
-        
-        .sticky-header {
-            backdrop-filter: blur(15px);
-            background-color: rgba(255, 247, 234, 0.95);
-            transition: all 0.3s ease;
-            border-bottom: 1px solid var(--border);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        }
-        
-        .hero-bg {
-            background: linear-gradient(135deg, var(--orange) 0%, var(--pink) 100%);
-        }
-        
-        .card-hover {
-            transition: all 0.3s ease;
-        }
-        
-        .card-hover:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-        
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
-        }
-        
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .accordion-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
-            opacity: 0;
-        }
-        
-        .accordion-content.active {
-            max-height: 500px;
-            opacity: 1;
-        }
-        
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-        }
-        
-        .modal.active {
+            height: calc(var(--promo-height) + env(safe-area-inset-top));
+            background: #F2B94B;
+            color: #1F2933;
+            z-index: 9999;
+            padding-top: env(safe-area-inset-top);
+            border-bottom: 1px solid rgba(0,0,0,0.1); /* Separator */
+            font-family: 'Inter', sans-serif;
+            font-weight: 400; /* Regular weight */
+            font-size: 13px;
+            line-height: var(--promo-height);
             display: flex;
             align-items: center;
             justify-content: center;
         }
-        
-        .tab-content {
-            display: none;
-        }
-        
-        .tab-content.active {
-            display: block;
-            animation: fadeIn 0.3s ease;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -32px;
-            top: 8px;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            background-color: var(--orange);
-            border: 4px solid var(--light);
-        }
-        
-        .timeline-item::after {
-            content: '';
-            position: absolute;
-            left: -24px;
-            top: 28px;
-            width: 2px;
-            height: calc(100% - 20px);
-            background-color: #e9ecef;
-        }
-        
-        .timeline-item:last-child::after {
-            display: none;
-        }
-        
-        /* Card styling */
-        .soft-shadow {
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-        }
-        
-        /* Polaroid frame */
-        .polaroid {
-            background: white;
-            padding: 12px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            transform: rotate(-1deg);
-        }
-        
-        .polaroid:nth-child(2n) {
-            transform: rotate(1deg);
-        }
-        
-        .polaroid img {
+
+        .promo-content {
             width: 100%;
-            height: auto;
-            display: block;
+            max-width: 1240px;
+            padding: 0 16px;
+            display: flex;
+            align-items: center;
+        }
+
+        .promo-content a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* Desktop View */
+        .promo-desktop {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
         }
         
-        /* Tape effect */
-        .tape {
-            position: relative;
+        .promo-desktop span a {
+            font-weight: 500;
         }
-        
-        .tape::before {
-            content: '';
-            position: absolute;
-            top: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 20px;
-            background: rgba(255, 255, 255, 0.9);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            transform: translateX(-50%) rotate(-3deg);
+
+        .promo-cta-btn {
+            background-color: #2F80ED;
+            color: white !important;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 400;
+            text-decoration: none;
+            line-height: 1.5;
+            transition: opacity 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            height: 24px;
+            margin-top: 8px; /* Center vertically relative to 40px height */
         }
-        
-        /* Decorative stickers */
-        .sticker {
-            position: absolute;
-            pointer-events: none;
-            opacity: 0.8;
-            z-index: 1;
+        .promo-cta-btn:hover {
+            opacity: 0.9;
         }
-        
-        .sticker svg {
-            width: 60px;
-            height: 60px;
-            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.1));
+
+        /* Mobile View */
+        .promo-mobile {
+            display: none;
+            width: 100%;
+            justify-content: space-between;
+            font-size: 11px;
         }
-        
-        .sticker.star {
-            top: -20px;
-            right: -20px;
-            transform: rotate(-5deg);
+
+        .promo-seg {
+            white-space: nowrap;
         }
-        
-        .sticker.sun {
-            top: -30px;
-            left: -30px;
-            transform: rotate(5deg);
-        }
-        
-        .sticker.pencil {
-            bottom: -20px;
-            right: -30px;
-            transform: rotate(-8deg);
-        }
-        
-        .sticker.rocket {
-            bottom: -30px;
-            left: -20px;
-            transform: rotate(3deg);
-        }
-        
-        .sticker.heart {
-            top: 50%;
-            right: -40px;
-            transform: translateY(-50%) rotate(-2deg);
-        }
-        
-        .sticker.leaf {
-            top: 50%;
-            left: -40px;
-            transform: translateY(-50%) rotate(4deg);
-        }
-        
-        /* Wavy dividers */
-        .wave-divider {
-            height: 60px;
+
+        .promo-seg.left {
             overflow: hidden;
+            text-overflow: ellipsis;
+            flex-shrink: 1; /* Allow truncation */
+            text-align: left;
+            margin-right: 8px;
         }
-        
-        .wave-divider svg {
-            width: 100%;
-            height: 100%;
-            opacity: 0.3;
+
+        .promo-seg.center {
+            flex-shrink: 0; /* Prevent truncation */
+            text-align: center;
+            font-weight: 500;
         }
-        
-        /* Doodle underline */
-        .doodle-underline {
-            position: relative;
+
+        .promo-seg.right {
+            flex-shrink: 0; /* Prevent truncation */
+            text-align: right;
+            margin-left: 8px;
+            font-weight: 600;
+        }
+
+        /* Responsive Switching */
+        @media (max-width: 768px) {
+            .promo-desktop { display: none; }
+            .promo-mobile { display: flex; }
+        }
+
+        /* --- Header Adjustment --- */
+        #main-header {
+            /* Push header down by promo height */
+            top: calc(var(--promo-height) + env(safe-area-inset-top));
+        }
+
+        /* --- Sticker Icons Styling --- */
+        .sticker-icon {
+            filter: drop-shadow(2px 3px 2px rgba(0,0,0,0.15));
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             display: inline-block;
         }
-        
-        .doodle-underline::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 100%;
-            height: 8px;
-            background: url("data:image/svg+xml,%3Csvg width='100' height='10' viewBox='0 0 100 10' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 5 Q 25 8, 50 5 T 100 5' stroke='%23FF6B6B' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") repeat-x;
-            background-size: 100px 10px;
-            z-index: -1;
+        .sticker-icon:hover {
+            transform: scale(1.15) rotate(5deg);
         }
         
-        /* Sparkle animation */
-        @keyframes sparkle {
-            0%, 100% { opacity: 0; transform: scale(0); }
-            50% { opacity: 1; transform: scale(1); }
-        }
-        
-        .sparkle {
-            position: absolute;
-            width: 8px;
-            height: 8px;
-            background: rgba(255, 255, 255, 0.8);
-            border-radius: 50%;
-            animation: sparkle 2s infinite;
-        }
-        
-        /* Floating animation */
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-3px) rotate(1deg); }
-        }
-        
-        .floating {
+        .sticker-float {
             animation: float 6s ease-in-out infinite;
         }
-        
-        /* Button styling */
-        .btn-playful {
-            border-radius: 20px;
-            box-shadow: 0 4px 12px rgba(255, 107, 107, 0.2);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
+
+        /* --- Components --- */
+        .btn-bouncy {
+            transition: transform 0.2s;
         }
-        
-        .btn-playful:hover {
-            transform: translateY(-2px) scale(1.01);
-            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.3);
+        .btn-bouncy:hover { transform: scale(1.05) rotate(-1deg); }
+        .btn-bouncy:active { transform: scale(0.95); }
+
+        .blob-shape {
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
         }
-        
-        /* Nav hover animation */
-        .nav-link {
-            position: relative;
+
+        /* --- Animations --- */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
         }
-        
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: url("data:image/svg+xml,%3Csvg width='100' height='4' viewBox='0 0 100 4' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 2 Q 25 4, 50 2 T 100 2' stroke='%23FF6B6B' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") repeat-x;
-            background-size: 100px 4px;
-            transition: width 0.3s ease;
+        @keyframes spin-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
-        
-        .nav-link:hover::after {
-            width: 100%;
+        .animate-spin-slow { animation: spin-slow 20s linear infinite; }
+
+        /* --- Table Styling --- */
+        .menu-notebook {
+            background: white;
+            background-image: repeating-linear-gradient(transparent, transparent 47px, #E2E8F0 48px);
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.05);
         }
+        .menu-notebook td { height: 48px; padding: 12px; vertical-align: bottom; }
         
-        /* Scroll animation for stickers */
-        .sticker-animate {
-            opacity: 0;
-            transform: translateY(20px) rotate(0deg);
-            transition: all 0.5s ease;
-        }
-        
-        .sticker-animate.visible {
-            opacity: 0.8;
-            transform: translateY(0) rotate(var(--rotation));
-        }
-        
-        /* Mobile adjustments */
-        @media (max-width: 768px) {
-            .sticker svg {
-                width: 40px;
-                height: 40px;
-            }
-            
-            .sticker.star {
-                top: -10px;
-                right: -10px;
-            }
-            
-            .sticker.sun {
-                top: -15px;
-                left: -15px;
-            }
-            
-            .sticker.pencil {
-                bottom: -10px;
-                right: -15px;
-            }
-            
-            .sticker.rocket {
-                bottom: -15px;
-                left: -10px;
-            }
-            
-            .sticker.heart {
-                top: 50%;
-                right: -20px;
-                transform: translateY(-50%) rotate(-2deg);
-            }
-            
-            .sticker.leaf {
-                top: 50%;
-                left: -20px;
-                transform: translateY(-50%) rotate(4deg);
-            }
-        }
+        /* Modal Transition */
+        .modal-enter { opacity: 0; pointer-events: none; }
+        .modal-enter-active { opacity: 1; pointer-events: auto; }
     </style>
 </head>
-<body>
-    <!-- Sticky Header -->
-    <header class="fixed top-0 w-full z-50 sticky-header border-b border-gray-200">
-        <div class="max-w-[1120px] mx-auto px-6 py-6">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-3">
-                    <img src="Compania-Mica-Logo-01.png" alt="Compania Mică Logo" class="h-12">
-                </div>
-                
-                <nav class="hidden md:flex items-center space-x-8">
-                    <a href="#despre" class="nav-link text-gray-700 hover:text-orange-500 font-medium">Despre</a>
-                    <a href="#programe" class="nav-link text-gray-700 hover:text-orange-500 font-medium">Programe</a>
-                    <a href="#o-zi" class="nav-link text-gray-700 hover:text-orange-500 font-medium">O zi la noi</a>
-                    <a href="#parinti" class="nav-link text-gray-700 hover:text-orange-500 font-medium">Părinți</a>
-                    <a href="#contact" class="nav-link text-gray-700 hover:text-orange-500 font-medium">Contact</a>
-                </nav>
-                
-                <div class="hidden md:flex items-center space-x-4">
-                    <a href="https://wa.me/40758246969" target="_blank" class="text-orange-500 hover:text-orange-600">
-                        <i class="fab fa-whatsapp text-2xl"></i>
-                    </a>
-                    <button onclick="openModal()" class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-xl font-medium transition-colors btn-playful">
-                        Programează o vizită
-                    </button>
-                </div>
-                
-                <div class="flex items-center space-x-4 md:hidden">
-                    <button onclick="openModal()" class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-xl font-medium text-sm transition-colors btn-playful">
-                        Vizită
-                    </button>
-                    <button id="mobileMenuBtn" class="p-2 text-gray-700">
-                        <i class="fas fa-bars text-xl"></i>
-                    </button>
-                </div>
+<body class="overflow-x-hidden font-sans text-slate-600">
+
+    <div class="promo-bar">
+        <div class="promo-content">
+            <div class="promo-desktop">
+                <span>Conținut orientativ • Dezvoltat de <a href="https://sky.ro" target="_blank">sky.ro</a> • <a href="mailto:dan.trifan@sky.ro">dan.trifan@sky.ro</a> • <a href="tel:+40720088880">+4 0720 088 880</a></span>
+                <a class="promo-cta-btn" href="https://wa.me/40720088880">WhatsApp</a>
+            </div>
+            <div class="promo-mobile">
+                <div class="promo-seg left">Concept demo</div>
+                <div class="promo-seg center">Dezvoltat de <a href="https://sky.ro" target="_blank">sky.ro</a></div>
+                <div class="promo-seg right"><a href="tel:+40720088880">+4 0720 088 880</a></div>
             </div>
         </div>
+    </div>
+
+    <header id="main-header" class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b-4 border-brand-orange/20 shadow-sm transition-all">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="#" class="flex items-center gap-2 group">
+                <img src="Compania-Mica-Logo-01.png" alt="Logo" class="h-10 md:h-12 w-auto group-hover:rotate-3 transition-transform">
+            </a>
+            
+            <nav class="hidden md:flex gap-6 font-display font-bold text-slate-600 text-lg">
+                <a href="#despre" class="hover:text-brand-orange transition-colors">Despre</a>
+                <a href="#programe" class="hover:text-brand-orange transition-colors">Programe</a>
+                <a href="#o-zi" class="hover:text-brand-orange transition-colors">O zi la noi</a>
+                <a href="#parinti" class="hover:text-brand-orange transition-colors">Părinți</a>
+                <a href="#contact" class="hover:text-brand-orange transition-colors">Contact</a>
+            </nav>
+
+            <div class="hidden md:flex gap-3 items-center">
+                <a href="https://wa.me/40758246969" target="_blank" class="text-3xl text-green-500 hover:scale-110 transition-transform">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <button onclick="openModal()" class="bg-brand-orange text-white px-6 py-2 rounded-full font-display font-bold shadow-playful hover:shadow-playful-hover hover:-translate-y-1 transition-all border-2 border-brand-orange">
+                    Vizită
+                </button>
+            </div>
+            
+            <button id="mobileMenuBtn" class="md:hidden text-2xl text-brand-orange"><i class="fas fa-bars"></i></button>
+        </div>
         
-        <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-gray-200">
-            <div class="px-6 py-4 space-y-3">
-                <a href="#despre" class="block py-2 text-gray-700 hover:text-orange-500 font-medium">Despre</a>
-                <a href="#programe" class="block py-2 text-gray-700 hover:text-orange-500 font-medium">Programe</a>
-                <a href="#o-zi" class="block py-2 text-gray-700 hover:text-orange-500 font-medium">O zi la noi</a>
-                <a href="#parinti" class="block py-2 text-gray-700 hover:text-orange-500 font-medium">Părinți</a>
-                <a href="#contact" class="block py-2 text-gray-700 hover:text-orange-500 font-medium">Contact</a>
-                <div class="pt-3 border-t border-gray-200 space-y-3">
-                    <a href="https://wa.me/40758246969" target="_blank" class="flex items-center space-x-2 text-orange-500">
-                        <i class="fab fa-whatsapp"></i>
-                        <span>Scrie-ne pe WhatsApp</span>
-                    </a>
-                    <button onclick="openModal()" class="w-full bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-xl font-medium btn-playful">
-                        Programează o vizită
-                    </button>
-                </div>
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-b-4 border-brand-orange absolute w-full shadow-xl z-50">
+            <div class="p-6 flex flex-col gap-4 text-center text-xl font-display font-bold text-slate-700">
+                <a href="#despre">Despre noi</a>
+                <a href="#programe">Programe</a>
+                <a href="#o-zi">O zi la noi</a>
+                <a href="#contact">Contact</a>
+                <button onclick="openModal()" class="bg-brand-pink text-white py-3 rounded-xl mt-2 shadow-playful">Programează vizită</button>
             </div>
         </div>
     </header>
 
     <main class="pt-24">
-        <!-- Hero Section -->
-        <section class="py-[80px] px-6 relative">
-            <!-- Decorative stickers -->
-            <div class="sticker star sticker-animate" style="--rotation: -5deg;">
-                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <polygon points="50,10 61,40 94,40 68,60 79,90 50,70 21,90 32,60 6,40 39,40" 
-                             fill="#FFD54A" stroke="white" stroke-width="3"/>
-                </svg>
-            </div>
-            <div class="sticker sun sticker-animate" style="--rotation: 8deg;">
-                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <circle cx="50" cy="50" r="25" fill="#FFD54A" stroke="white" stroke-width="3"/>
-                    <line x1="50" y1="10" x2="50" y2="5" stroke="white" stroke-width="3"/>
-                    <line x1="50" y1="95" x2="50" y2="90" stroke="white" stroke-width="3"/>
-                    <line x1="10" y1="50" x2="5" y2="50" stroke="white" stroke-width="3"/>
-                    <line x1="90" y1="50" x2="95" y2="50" stroke="white" stroke-width="3"/>
-                    <line x1="79" y1="21" x2="85" y2="15" stroke="white" stroke-width="3"/>
-                    <line x1="21" y1="79" x2="15" y2="85" stroke="white" stroke-width="3"/>
-                    <line x1="79" y1="79" x2="85" y2="85" stroke="white" stroke-width="3"/>
-                    <line x1="21" y1="21" x2="15" y2="15" stroke="white" stroke-width="3"/>
-                </svg>
-            </div>
-            
-            <div class="max-w-[1120px] mx-auto grid md:grid-cols-2 gap-12 items-center">
-                <div class="fade-in">
-                    <h1 class="text-[clamp(2.5rem,5vw,3.5rem)] display-font font-bold text-gray-800 leading-tight mb-6">
-                        Grădiniță și Afterschool privat în Sector 2
+        <section class="pt-10 pb-20 px-4 relative overflow-hidden">
+            <img src="childrenpart/soare test .png" class="absolute top-10 left-[-20px] w-32 h-32 opacity-90 animate-spin-slow sticker-icon z-0" alt="Soare">
+            <img src="childrenpart/nor.png" class="absolute top-20 right-10 w-24 opacity-80 sticker-float sticker-icon z-0" alt="Nor">
+            <img src="childrenpart/balon cu aer cald.png" class="absolute top-40 right-[15%] w-20 opacity-60 sticker-float sticker-icon z-0" style="animation-delay: 1s;" alt="Balon">
+            <img src="childrenpart/elicopter.png" class="absolute bottom-20 left-[10%] w-24 sticker-float sticker-icon z-0 opacity-50" style="animation-delay: 2s;" alt="Elicopter">
+
+            <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-8 items-center relative z-10">
+                <div class="text-center md:text-left">
+                    <div class="inline-flex items-center gap-2 bg-brand-yellow/30 text-orange-700 font-bold px-4 py-1 rounded-full mb-4 transform -rotate-2">
+                        <img src="childrenpart/albina.png" class="w-6 h-6" alt="Albina">
+                        <span>Înscrieri Deschise 2024</span>
+                    </div>
+                    <h1 class="text-5xl md:text-7xl font-display font-bold text-slate-800 leading-tight mb-6">
+                        Grădiniță <br>
+                        <span class="text-brand-orange relative inline-block">
+                             Privată
+                        </span> 
+                        & Afterschool
                     </h1>
-                    <p class="text-lg text-gray-600 leading-relaxed mb-8 max-w-[68ch]">
-                        Lângă Parcul Circului. Predare și în limba germană. Comunicăm transparent, cu rutine blânde și clare.
+                    <p class="text-xl text-slate-600 mb-8 font-medium leading-relaxed">
+                        Lângă <strong>Parcul Circului</strong>. Predare în germană, mâncare sănătoasă și multă, multă joacă!
                     </p>
-                    <div class="flex flex-col sm:flex-row gap-4">
-                        <button onclick="openModal()" class="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-xl font-medium text-lg transition-colors btn-playful">
-                            Programează o vizită
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                        <button onclick="openModal()" class="btn-bouncy bg-brand-pink text-white px-8 py-4 rounded-2xl font-display font-bold text-xl shadow-playful border-2 border-brand-pink flex items-center justify-center gap-2">
+                            <span>Hai la noi!</span>
+                            <img src="childrenpart/inima.png" class="w-6 h-6 invert brightness-0" alt="Inima">
                         </button>
-                        <a href="https://wa.me/40758246969" target="_blank" class="flex items-center justify-center space-x-2 px-8 py-4 rounded-xl border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors">
-                            <i class="fab fa-whatsapp"></i>
-                            <span>Scrie-ne pe WhatsApp</span>
+                        <a href="https://wa.me/40758246969" target="_blank" class="btn-bouncy bg-white text-slate-700 border-2 border-slate-200 px-8 py-4 rounded-2xl font-bold text-lg hover:border-green-500 hover:text-green-600 flex items-center justify-center gap-2">
+                            <i class="fab fa-whatsapp text-2xl"></i> WhatsApp
                         </a>
                     </div>
                 </div>
-                <div class="fade-in">
-                    <div class="rounded-2xl overflow-hidden soft-shadow floating tape">
-                        <img src="a-teacher-walking-among-small-school-children-on-t-2026-01-05-06-31-48-utc.webp" alt="Copii jucând la grădiniță" class="w-full h-auto">
+                
+                <div class="relative mt-10 md:mt-0">
+                    <div class="absolute inset-0 bg-brand-blue/20 blob-shape transform rotate-6 scale-110 z-0"></div>
+                    <div class="relative z-10 bg-white p-3 shadow-xl transform -rotate-2 rounded-3xl">
+                        <img src="a-teacher-walking-among-small-school-children-on-t-2026-01-05-06-31-48-utc.webp" alt="Copii jucând" class="w-full h-auto rounded-2xl border-2 border-brand-cream">
                     </div>
+                    <img src="childrenpart/baiat.png" class="absolute -bottom-8 -left-4 w-24 h-auto sticker-icon z-20" alt="Baiat">
+                    <img src="childrenpart/fata.png" class="absolute -top-8 -right-4 w-24 h-auto sticker-icon z-20" alt="Fata">
                 </div>
             </div>
         </section>
 
-        <!-- Wave divider -->
-        <div class="wave-divider">
-            <svg viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true">
-                <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" fill="#FF6B6B"></path>
-                <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" fill="#FF8E53"></path>
-                <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="#FF6B6B"></path>
-            </svg>
+        <div class="relative h-16 w-full overflow-hidden">
+             <svg viewBox="0 0 1440 320" class="absolute bottom-0 w-full h-24 text-white fill-current" preserveAspectRatio="none"><path d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,224C672,245,768,267,864,261.3C960,256,1056,224,1152,197.3C1248,171,1344,149,1392,138.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
         </div>
-        
-        <!-- Despre Section -->
-        <section id="despre" class="py-[80px] px-6 border-t border-gray-200 relative">
-            <div class="max-w-[1120px] mx-auto fade-in">
-                <div class="max-w-[68ch] mx-auto text-center mb-12">
-                    <h2 class="text-[clamp(2rem,4vw,2.5rem)] display-font font-bold text-gray-800 mb-6">Despre Compania Mică</h2>
-                    <p class="text-lg text-gray-600 leading-relaxed mb-6">
-                        O grădiniță și afterschool privată în Sector 2, unde copiii se dezvoltă în siguranță și bună știință.
-                    </p>
-                    <p class="text-lg text-gray-600 leading-relaxed mb-8">
-                        Acreditată și reglementată, oferim mediu cald și stimulant, ideal pentru formarea socială, cognitivă și emoțională a fiecărui copil.
-                    </p>
-                    <div class="grid md:grid-cols-3 gap-6 text-left">
-                        <div class="bg-white p-6 rounded-xl soft-shadow card-hover">
-                            <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mb-4">
-                                <i class="fas fa-map-marker-alt text-orange-500"></i>
-                            </div>
-                            <h3 class="font-semibold text-gray-800 mb-2">Locatie centrală</h3>
-                            <p class="text-gray-600">Lângă Parcul Circului, Sector 2 București</p>
+
+        <section id="despre" class="bg-white py-16 px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-display font-bold text-slate-800 mb-4">Despre Noi</h2>
+                    <p class="text-lg text-slate-500 max-w-2xl mx-auto">Un mediu sigur, cald și creativ pentru micuțul tău.</p>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-brand-cream p-8 rounded-[2rem] hover:bg-orange-50 transition-colors text-center border-2 border-transparent hover:border-brand-orange group">
+                        <div class="h-24 flex items-center justify-center mb-4">
+                            <img src="childrenpart/casa.png" class="h-20 w-auto sticker-icon group-hover:scale-110" alt="Casa">
                         </div>
-                        <div class="bg-white p-6 rounded-xl soft-shadow card-hover">
-                            <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mb-4">
-                                <i class="fas fa-language text-orange-500"></i>
-                            </div>
-                            <h3 class="font-semibold text-gray-800 mb-2">Predare germană</h3>
-                            <p class="text-gray-600">Integrată natural în activitățile zilnice prin joacă</p>
+                        <h3 class="font-display font-bold text-xl mb-2 text-slate-800">Locație Centrală</h3>
+                        <p class="text-sm">Sector 2, liniște și acces ușor lângă Parcul Circului.</p>
+                    </div>
+                    
+                    <div class="bg-blue-50 p-8 rounded-[2rem] hover:bg-blue-100 transition-colors text-center border-2 border-transparent hover:border-brand-blue group">
+                        <div class="h-24 flex items-center justify-center mb-4">
+                            <img src="childrenpart/fata.png" class="h-20 w-auto sticker-icon group-hover:scale-110" alt="Fata">
                         </div>
-                        <div class="bg-white p-6 rounded-xl soft-shadow card-hover">
-                            <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mb-4">
-                                <i class="fas fa-certificate text-orange-500"></i>
-                            </div>
-                            <h3 class="font-semibold text-gray-800 mb-2">Acreditată</h3>
-                            <p class="text-gray-600">În conformitate cu standardele educaționale române</p>
+                        <h3 class="font-display font-bold text-xl mb-2 text-slate-800">Germană Intensiv</h3>
+                        <p class="text-sm">Învățare naturală prin joacă, cântece și povești zilnice.</p>
+                    </div>
+
+                    <div class="bg-pink-50 p-8 rounded-[2rem] hover:bg-pink-100 transition-colors text-center border-2 border-transparent hover:border-brand-pink group">
+                        <div class="h-24 flex items-center justify-center mb-4">
+                            <img src="childrenpart/umbrela.png" class="h-20 w-auto sticker-icon group-hover:scale-110" alt="Siguranta">
                         </div>
+                        <h3 class="font-display font-bold text-xl mb-2 text-slate-800">Mediu Sigur</h3>
+                        <p class="text-sm">Standarde educaționale înalte și siguranță deplină.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Wave divider -->
-        <div class="wave-divider">
-            <svg viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true">
-                <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" fill="#FF8E53"></path>
-                <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" fill="#FF6B6B"></path>
-                <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="#FF8E53"></path>
-            </svg>
+        <div class="relative h-12 w-full overflow-hidden bg-white">
+             <svg viewBox="0 0 1440 320" class="absolute top-0 w-full h-24 text-brand-cream fill-current transform rotate-180" preserveAspectRatio="none"><path d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
         </div>
-        
-        <!-- De Ce Noi Section -->
-        <section id="programe" class="py-[80px] px-6 relative">
-            <div class="max-w-[1120px] mx-auto fade-in">
-                <h2 class="text-[clamp(2rem,4vw,2.5rem)] display-font font-bold text-gray-800 text-center mb-12">De ce noi</h2>
-                <div class="grid md:grid-cols-2 gap-6 mb-8">
-                    <div class="bg-white p-6 rounded-xl soft-shadow card-hover">
-                        <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mb-4">
-                            <i class="fas fa-user-graduate text-orange-500"></i>
+
+        <section id="programe" class="bg-brand-cream py-16 px-4">
+            <div class="max-w-5xl mx-auto">
+                <h2 class="text-4xl font-display font-bold text-center mb-12 text-slate-800">Ce oferim?</h2>
+                
+                <div class="space-y-10">
+                    <div class="bg-white rounded-3xl p-8 md:p-10 shadow-playful border-2 border-brand-orange flex flex-col md:flex-row items-center gap-8 relative overflow-hidden hover:-translate-y-1 transition-transform">
+                        <img src="childrenpart/fluture.png" class="absolute top-4 right-4 w-12 sticker-icon opacity-80">
+                        
+                        <div class="w-full md:w-1/3 relative">
+                            <img src="preschool-students-raising-their-hands-2026-01-09-10-13-33-utc.webp" class="rounded-2xl border-4 border-brand-yellow transform rotate-2 w-full object-cover h-48" alt="Gradinita">
+                            <img src="childrenpart/urs.png" class="absolute -bottom-6 -right-6 w-20 sticker-icon z-10" alt="Urs">
                         </div>
-                        <h3 class="font-semibold text-gray-800 mb-2">Educatori calificați</h3>
-                        <p class="text-gray-600">Echipă dedicată și pregătită pentru formarea copiilor</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-xl soft-shadow card-hover">
-                        <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mb-4">
-                            <i class="fas fa-book text-orange-500"></i>
+                        <div class="w-full md:w-2/3">
+                            <div class="inline-block bg-brand-orange text-white px-3 py-1 rounded-lg text-sm font-bold mb-2">1,5 – 6 ani</div>
+                            <h3 class="text-3xl font-display font-bold text-slate-800 mb-3">Grădiniță</h3>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-orange-50 text-orange-600 px-3 py-1 rounded-full text-sm font-bold flex items-center gap-1">Educație</span>
+                                <span class="bg-orange-50 text-orange-600 px-3 py-1 rounded-full text-sm font-bold flex items-center gap-1"><img src="childrenpart/floare roz.png" class="w-4"> Artă</span>
+                            </div>
+                            <p class="text-slate-600">Activități structurate, dezvoltare personală și multă joacă educativă.</p>
                         </div>
-                        <h3 class="font-semibold text-gray-800 mb-2">Germană integrată</h3>
-                        <p class="text-gray-600">Predare prin joacă și rutine naturale</p>
                     </div>
-                    <div class="bg-white p-6 rounded-xl soft-shadow card-hover">
-                        <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mb-4">
-                            <i class="fas fa-tree text-orange-500"></i>
+
+                    <div class="bg-white rounded-3xl p-8 md:p-10 shadow-playful border-2 border-brand-blue flex flex-col md:flex-row items-center gap-8 relative overflow-hidden hover:-translate-y-1 transition-transform">
+                        <img src="childrenpart/buburuza .png" class="absolute top-4 right-4 w-10 sticker-icon opacity-80">
+                        
+                        <div class="w-full md:w-1/3 md:order-2 relative">
+                            <img src="a-girl-up-to-10-years-old-does-homework-by-letter-2026-01-05-04-46-51-utc.webp" class="rounded-2xl border-4 border-brand-blue transform -rotate-2 w-full object-cover h-48" alt="Afterschool">
+                            <img src="childrenpart/racheta .png" class="absolute -bottom-6 -left-6 w-20 sticker-icon z-10" alt="Racheta">
                         </div>
-                        <h3 class="font-semibold text-gray-800 mb-2">Curte și timp afară</h3>
-                        <p class="text-gray-600">Activități în aer liber zilnice pentru dezvoltarea fizică</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-xl soft-shadow card-hover">
-                        <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mb-4">
-                            <i class="fas fa-heart text-orange-500"></i>
-                        </div>
-                        <h3 class="font-semibold text-gray-800 mb-2">Rutine clare</h3>
-                        <p class="text-gray-600">Atitudine blândă și respect pentru fiecare copil</p>
-                    </div>
-                </div>
-                <div class="bg-white rounded-xl soft-shadow overflow-hidden">
-                    <button class="accordion-toggle w-full px-6 py-4 text-left font-medium text-gray-800 flex items-center justify-between hover:text-orange-500">
-                        <span>Vezi mai mult</span>
-                        <i class="fas fa-chevron-down transition-transform"></i>
-                    </button>
-                    <div class="accordion-content px-6 pb-4">
-                        <div class="grid md:grid-cols-2 gap-6 pt-4">
-                            <div class="bg-gray-50 p-4 rounded-lg">
-                                <h4 class="font-medium text-gray-800 mb-2">Ghidare părinți</h4>
-                                <p class="text-gray-600 text-sm">Consultanță și îndrumare pentru părinți</p>
+                        <div class="w-full md:w-2/3 md:order-1">
+                            <div class="inline-block bg-brand-blue text-white px-3 py-1 rounded-lg text-sm font-bold mb-2">Clasa 0 – IV</div>
+                            <h3 class="text-3xl font-display font-bold text-slate-800 mb-3">Afterschool</h3>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-sm font-bold flex items-center gap-1"><img src="childrenpart/unicorn.png" class="w-5"> Teme</span>
+                                <span class="bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-sm font-bold flex items-center gap-1"><img src="childrenpart/dinozaur.png" class="w-5"> Activități</span>
                             </div>
-                            <div class="bg-gray-50 p-4 rounded-lg">
-                                <h4 class="font-medium text-gray-800 mb-2">Higienă premium</h4>
-                                <p class="text-gray-600 text-sm">Produse de îngrijire de înaltă calitate</p>
-                            </div>
-                            <div class="bg-gray-50 p-4 rounded-lg">
-                                <h4 class="font-medium text-gray-800 mb-2">Sănătate și nutriție</h4>
-                                <p class="text-gray-600 text-sm">Meniu alimentar echilibrat și variat</p>
-                            </div>
-                            <div class="bg-gray-50 p-4 rounded-lg">
-                                <h4 class="font-medium text-gray-800 mb-2">Cauțiune medicală</h4>
-                                <p class="text-gray-600 text-sm">Persoal calificat pentru primele ajutorări</p>
-                            </div>
+                            <p class="text-slate-600">Suport la teme, relaxare și activități extrașcolare pentru a descoperi noi pasiuni.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Programe Section -->
-        <section class="py-[80px] px-6 border-t border-gray-200">
-            <div class="max-w-[1120px] mx-auto fade-in">
-                <h2 class="text-[clamp(2rem,4vw,2.5rem)] display-font font-bold text-gray-800 text-center mb-12">Programe</h2>
-                <div class="grid md:grid-cols-2 gap-8 mb-8">
-                    <div class="bg-white p-8 rounded-2xl soft-shadow card-hover">
-                        <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mb-6">
-                            <i class="fas fa-child text-orange-500 text-2xl"></i>
+        <section id="o-zi" class="py-16 px-4 bg-white relative">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-4xl font-display font-bold text-center mb-16 text-slate-800">O zi la noi</h2>
+                
+                <div class="relative pl-8 md:pl-0 space-y-12">
+                    <div class="absolute left-8 md:left-1/2 top-0 bottom-0 w-1 bg-dashed border-r-2 border-slate-200 border-dashed md:-ml-0.5"></div>
+                    
+                    <div class="relative md:flex md:justify-between items-center group">
+                        <div class="md:w-[45%] text-right pr-8 hidden md:block">
+                            <img src="childrenpart/masina.png" class="w-24 inline-block sticker-icon" alt="Masina">
                         </div>
-                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Grădiniță</h3>
-                        <p class="text-gray-600 mb-4">1,5 – 6 ani</p>
-                        <ul class="space-y-2 text-gray-600">
-                            <li class="flex items-center">
-                                <i class="fas fa-check text-orange-500 mr-2"></i>
-                                Activități structurate și joacă educativă
-                            </li>
-                            <li class="flex items-center">
-                                <i class="fas fa-check text-orange-500 mr-2"></i>
-                                Dezvoltare personală și socială
-                            </li>
-                        </ul>
-                        <div class="mt-6 rounded-lg overflow-hidden polaroid tape">
-                            <img src="preschool-students-raising-their-hands-2026-01-09-10-13-33-utc.webp" alt="Copii la grădiniță" class="w-full h-auto">
+                        <div class="absolute left-8 md:left-1/2 w-6 h-6 bg-brand-yellow rounded-full border-4 border-white transform -translate-x-1/2 z-10 shadow-md"></div>
+                        <div class="md:w-[45%] pl-8 md:pl-0">
+                            <div class="p-6 bg-brand-cream rounded-2xl border-2 border-brand-yellow shadow-sm relative">
+                                <h3 class="font-display font-bold text-xl text-brand-orange">8:00 – 8:30</h3>
+                                <p class="font-bold text-slate-700">Sosire</p>
+                                <p class="text-sm">Primire cu zâmbete.</p>
+                                <img src="childrenpart/masina.png" class="w-16 absolute -top-6 -right-4 md:hidden sticker-icon">
+                            </div>
                         </div>
                     </div>
-                    <div class="bg-white p-8 rounded-2xl soft-shadow card-hover">
-                        <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mb-6">
-                            <i class="fas fa-book-open text-orange-500 text-2xl"></i>
+
+                    <div class="relative md:flex md:justify-between items-center group">
+                        <div class="md:w-[45%] pl-8 md:pl-0 md:text-right pr-0 md:pr-0">
+                             <div class="p-6 bg-pink-50 rounded-2xl border-2 border-brand-pink shadow-sm relative">
+                                <h3 class="font-display font-bold text-xl text-brand-pink">8:30 – 10:00</h3>
+                                <p class="font-bold text-slate-700">Activități</p>
+                                <p class="text-sm">Cerc de dimineață & mic dejun.</p>
+                                <img src="childrenpart/pui.png" class="w-12 absolute -top-4 -right-4 sticker-icon">
+                            </div>
                         </div>
-                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Afterschool</h3>
-                        <p class="text-gray-600 mb-4">0 – IV clase</p>
-                        <ul class="space-y-2 text-gray-600">
-                            <li class="flex items-center">
-                                <i class="fas fa-check text-orange-500 mr-2"></i>
-                                Ajutor cu temele și activități creative
-                            </li>
-                            <li class="flex items-center">
-                                <i class="fas fa-check text-orange-500 mr-2"></i>
-                                Timp liber controlat și activități extra
-                            </li>
-                        </ul>
-                        <div class="mt-6 rounded-lg overflow-hidden polaroid">
-                            <img src="a-girl-up-to-10-years-old-does-homework-by-letter-2026-01-05-04-46-51-utc.webp" alt="Copii la afterschool" class="w-full h-auto">
+                        <div class="absolute left-8 md:left-1/2 w-6 h-6 bg-brand-pink rounded-full border-4 border-white transform -translate-x-1/2 z-10 shadow-md"></div>
+                        <div class="md:w-[45%] pl-8 md:pl-0 hidden md:block">
+                             <img src="childrenpart/pui.png" class="w-20 inline-block sticker-icon ml-8">
                         </div>
                     </div>
-                </div>
-                <div class="bg-white rounded-xl soft-shadow p-6">
-                    <h4 class="font-semibold text-gray-800 mb-4">Activități opționale</h4>
-                    <div class="flex flex-wrap gap-4">
-                        <span class="px-4 py-2 bg-gray-100 rounded-full text-gray-700 text-sm">Pian</span>
-                        <span class="px-4 py-2 bg-gray-100 rounded-full text-gray-700 text-sm">Robotică</span>
-                        <span class="px-4 py-2 bg-gray-100 rounded-full text-gray-700 text-sm">Dans</span>
-                        <span class="px-4 py-2 bg-gray-100 rounded-full text-gray-700 text-sm">Aikido</span>
+
+                    <div class="relative md:flex md:justify-between items-center group">
+                        <div class="md:w-[45%] text-right pr-8 hidden md:block">
+                            <img src="childrenpart/minge.png" class="w-20 inline-block sticker-icon">
+                        </div>
+                        <div class="absolute left-8 md:left-1/2 w-6 h-6 bg-brand-blue rounded-full border-4 border-white transform -translate-x-1/2 z-10 shadow-md"></div>
+                        <div class="md:w-[45%] pl-8 md:pl-0">
+                            <div class="p-6 bg-blue-50 rounded-2xl border-2 border-brand-blue shadow-sm relative">
+                                <h3 class="font-display font-bold text-xl text-brand-blue">10:30 – 12:00</h3>
+                                <p class="font-bold text-slate-700">Joacă Afară!</p>
+                                <p class="text-sm">Curte, aer curat și mișcare.</p>
+                                <img src="childrenpart/minge.png" class="w-12 absolute -top-4 -right-4 md:hidden sticker-icon">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relative md:flex md:justify-between items-center group">
+                        <div class="md:w-[45%] pl-8 md:pl-0">
+                             <div class="p-6 bg-orange-50 rounded-2xl border-2 border-brand-orange shadow-sm relative">
+                                <h3 class="font-display font-bold text-xl text-brand-orange">12:00 – 13:00</h3>
+                                <p class="font-bold text-slate-700">Masa de Prânz</p>
+                                <p class="text-sm">Gătit proaspăt și gustos.</p>
+                                <img src="childrenpart/lubenita.png" class="w-14 absolute -top-5 -right-4 sticker-icon">
+                            </div>
+                        </div>
+                        <div class="absolute left-8 md:left-1/2 w-6 h-6 bg-brand-orange rounded-full border-4 border-white transform -translate-x-1/2 z-10 shadow-md"></div>
+                        <div class="md:w-[45%] pl-8 hidden md:block">
+                             <img src="childrenpart/caine.png" class="w-24 inline-block sticker-icon ml-8 opacity-80" title="Somn usor">
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- O Zi la Noi Section -->
-        <section id="o-zi" class="py-[80px] px-6">
-            <div class="max-w-[1120px] mx-auto fade-in">
-                <h2 class="text-[clamp(2rem,4vw,2.5rem)] display-font font-bold text-gray-800 text-center mb-12">O zi la noi</h2>
-                <div class="relative max-w-2xl mx-auto">
-                    <div class="space-y-8">
-                        <div class="timeline-item relative pl-8">
-                            <div class="bg-white p-6 rounded-xl soft-shadow card-hover">
-                                <h3 class="font-semibold text-gray-800 mb-2">8:00 – 8:30</h3>
-                                <p class="text-gray-600">Primire și activități de bun venit</p>
-                            </div>
-                        </div>
-                        <div class="timeline-item relative pl-8">
-                            <div class="bg-white p-6 rounded-xl soft-shadow card-hover">
-                                <h3 class="font-semibold text-gray-800 mb-2">8:30 – 10:00</h3>
-                                <p class="text-gray-600">Activități educaționale structurate</p>
-                            </div>
-                        </div>
-                        <div class="timeline-item relative pl-8">
-                            <div class="bg-white p-6 rounded-xl soft-shadow card-hover">
-                                <h3 class="font-semibold text-gray-800 mb-2">10:00 – 10:30</h3>
-                                <p class="text-gray-600">Pauză și gustări sănătoase</p>
-                            </div>
-                        </div>
-                        <div class="timeline-item relative pl-8">
-                            <div class="bg-white p-6 rounded-xl soft-shadow card-hover">
-                                <h3 class="font-semibold text-gray-800 mb-2">10:30 – 12:00</h3>
-                                <p class="text-gray-600">Joacă liberă și activități în curte</p>
-                            </div>
-                        </div>
-                        <div class="timeline-item relative pl-8">
-                            <div class="bg-white p-6 rounded-xl soft-shadow card-hover">
-                                <h3 class="font-semibold text-gray-800 mb-2">12:00 – 13:00</h3>
-                                <p class="text-gray-600">Masa de prânz și relaxare</p>
-                            </div>
-                        </div>
-                        <div class="timeline-item relative pl-8">
-                            <div class="bg-white p-6 rounded-xl soft-shadow card-hover">
-                                <h3 class="font-semibold text-gray-800 mb-2">13:00 – 16:00</h3>
-                                <p class="text-gray-600">Activități creative și joacă educativă</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="mt-12 grid md:grid-cols-3 gap-6">
-                    <div class="polaroid tape">
-                        <img src="adorable-schoolgirls-taking-lunch-at-school-cafete-2026-01-06-00-42-32-utc.webp" alt="Copii la masa de prânz" class="w-full h-auto">
-                    </div>
-                    <div class="polaroid">
-                        <img src="creating-finger-painting-2026-01-08-07-08-09-utc.webp" alt="Copii la activități creative" class="w-full h-auto">
-                    </div>
-                    <div class="polaroid tape">
-                        <img src="top-view-of-kids-hands-playing-with-puzzles-2026-01-07-06-12-18-utc.webp" alt="Copii joacă cu puzzle" class="w-full h-auto">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Curriculum Section -->
-        <section class="py-[80px] px-6 border-t border-gray-200">
-            <div class="max-w-[1120px] mx-auto fade-in">
-                <h2 class="text-[clamp(2rem,4vw,2.5rem)] display-font font-bold text-gray-800 text-center mb-12">Curriculum</h2>
-                <div class="bg-white rounded-2xl soft-shadow overflow-hidden">
-                    <div class="flex flex-wrap border-b border-gray-200">
-                        <button class="tab-button px-6 py-4 font-medium text-gray-800 hover:text-orange-500 border-b-2 border-orange-500 active" data-tab="comunicare">
-                            Comunicare
+        <section class="py-16 px-4 bg-brand-cream">
+            <div class="max-w-5xl mx-auto">
+                <h2 class="text-4xl font-display font-bold text-center mb-10 text-slate-800">Curriculum</h2>
+                
+                <div class="bg-white rounded-[2rem] shadow-playful overflow-hidden border-2 border-slate-100">
+                    <div class="flex flex-wrap border-b-2 border-slate-100 bg-slate-50">
+                        <button class="tab-btn active flex-1 py-4 font-bold text-slate-500 hover:text-brand-orange hover:bg-white transition-all" data-target="comunicare">
+                            <img src="childrenpart/fata.png" class="w-6 inline mr-2"> Comunicare
                         </button>
-                        <button class="tab-button px-6 py-4 font-medium text-gray-600 hover:text-orange-500 border-b-2 border-transparent" data-tab="stinte">
-                            Științe
+                        <button class="tab-btn flex-1 py-4 font-bold text-slate-500 hover:text-brand-orange hover:bg-white transition-all" data-target="stiinte">
+                            <img src="childrenpart/floare albastra.png" class="w-6 inline mr-2"> Științe
                         </button>
-                        <button class="tab-button px-6 py-4 font-medium text-gray-600 hover:text-orange-500 border-b-2 border-transparent" data-tab="matematica">
-                            Matematică
-                        </button>
-                        <button class="tab-button px-6 py-4 font-medium text-gray-600 hover:text-orange-500 border-b-2 border-transparent" data-tab="arte">
-                            Arte
-                        </button>
-                        <button class="tab-button px-6 py-4 font-medium text-gray-600 hover:text-orange-500 border-b-2 border-transparent" data-tab="miscare">
-                            Mișcare
-                        </button>
-                        <button class="tab-button px-6 py-4 font-medium text-gray-600 hover:text-orange-500 border-b-2 border-transparent" data-tab="socio-emotional">
-                            Socio-emoțional
+                        <button class="tab-btn flex-1 py-4 font-bold text-slate-500 hover:text-brand-orange hover:bg-white transition-all" data-target="matematica">
+                            <img src="childrenpart/camion.png" class="w-6 inline mr-2"> Matematică
                         </button>
                     </div>
-                    <div class="p-8">
+                    
+                    <div class="p-8 md:p-12 bg-white min-h-[300px]">
                         <div id="comunicare" class="tab-content active">
-                            <h3 class="text-xl font-bold text-gray-800 mb-4">Comunicare</h3>
-                            <ul class="space-y-2 text-gray-600">
-                                <li class="flex items-start">
-                                    <i class="fas fa-check text-orange-500 mr-2 mt-1"></i>
-                                    Dezvoltarea limbii române și germană
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-check text-orange-500 mr-2 mt-1"></i>
-                                    Dialoguri structurate și activități de comunicare
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-check text-orange-500 mr-2 mt-1"></i>
-                                    Lectură și scriere pentru vârstele respective
-                                </li>
+                            <h3 class="text-2xl font-bold text-brand-orange mb-4 flex items-center gap-3">
+                                Comunicare și Limbaj
+                            </h3>
+                            <ul class="space-y-4 text-lg">
+                                <li class="bg-orange-50 p-3 rounded-xl border border-orange-100">Română & Germană intensiv</li>
+                                <li class="bg-orange-50 p-3 rounded-xl border border-orange-100">Jocuri de rol și povești</li>
                             </ul>
                         </div>
-                        <div id="stinte" class="tab-content">
-                            <h3 class="text-xl font-bold text-gray-800 mb-4">Științe</h3>
-                            <ul class="space-y-2 text-gray-600">
-                                <li class="flex items-start">
-                                    <i class="fas fa-check text-orange-500 mr-2 mt-1"></i>
-                                    Descoperirea mediului natural și al tehnologiei
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-check text-orange-500 mr-2 mt-1"></i>
-                                    Experimente simple și interactive
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-check text-orange-500 mr-2 mt-1"></i>
-                                    Observații și învățare practică
-                                </li>
+                        <div id="stiinte" class="tab-content hidden">
+                            <h3 class="text-2xl font-bold text-green-500 mb-4 flex items-center gap-3">
+                                Natură și Explorare
+                            </h3>
+                            <ul class="space-y-4 text-lg">
+                                <li class="bg-green-50 p-3 rounded-xl border border-green-100">Experimente haioase</li>
+                                <li class="bg-green-50 p-3 rounded-xl border border-green-100">Grădinărit în curte</li>
                             </ul>
                         </div>
-                        <div id="matematica" class="tab-content">
-                            <h3 class="text-xl font-bold text-gray-800 mb-4">Matematică</h3>
-                            <ul class="space-y-2 text-gray-600">
-                                <li class="flex items-start">
-                                    <i class="fas fa-check text-orange-500 mr-2 mt-1"></i>
-                                    Numere, forme și spațiu
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-check text-orange-500 mr-2 mt-1"></i>
-                                    Probleme practice și activități manuale
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-check text-orange-500 mr-2 mt-1"></i>
-                                    Gândire logică și rezolvarea problemelor
-                                </li>
+                        <div id="matematica" class="tab-content hidden">
+                            <h3 class="text-2xl font-bold text-blue-500 mb-4 flex items-center gap-3">
+                                Logică și Construcții
+                            </h3>
+                            <ul class="space-y-4 text-lg">
+                                <li class="bg-blue-50 p-3 rounded-xl border border-blue-100">Puzzle-uri logice</li>
+                                <li class="bg-blue-50 p-3 rounded-xl border border-blue-100">Forme și construcții geometrice</li>
                             </ul>
-                        </div>
-                        <div id="arte" class="tab-content">
-                            <h3 class="text-xl font-bold text-gray-800 mb-4">Arte</h3>
-                            <ul class="space-y-2 text-gray-600">
-                                <li class="flex items-start">
-                                    <i class="fas fa-check text-orange-500 mr-2 mt-1"></i>
-                                    Pictură, sculptură și arte plastice
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-check text-orange-500 mr-2 mt-1"></i>
-                                    Muzică și activități ritmice
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-check text-orange-500 mr-2 mt-1"></i>
-                                    Creativitate și expresie personală
-                                </li>
-                            </ul>
-                        </div>
-                        <div id="miscare" class="tab-content">
-                            <h3 class="text-xl font-bold text-gray-800 mb-4">Mișcare</h3>
-                            <ul class="space-y-2 text-gray-600">
-                                <li class="flex items-start">
-                                    <i class="fas fa-check text-orange-500 mr-2 mt-1"></i>
-                                    Activități fizice și jocuri motrice
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-check text-orange-500 mr-2 mt-1"></i>
-                                    Dans și exercitii corespunzătoare vârstei
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-check text-orange-500 mr-2 mt-1"></i>
-                                    Dezvoltarea coordonării și străinătății
-                                </li>
-                            </ul>
-                        </div>
-                        <div id="socio-emotional" class="tab-content">
-                            <h3 class="text-xl font-bold text-gray-800 mb-4">Socio-emoțional</h3>
-                            <ul class="space-y-2 text-gray-600">
-                                <li class="flex items-start">
-                                    <i class="fas fa-check text-orange-500 mr-2 mt-1"></i>
-                                    Dezvoltarea empatiei și comunicării
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-check text-orange-500 mr-2 mt-1"></i>
-                                    Gestionarea emoțiilor și rezolvarea conflictelor
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-check text-orange-500 mr-2 mt-1"></i>
-                                    Respectul pentru sine și ceilalți
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="mt-8 bg-white rounded-xl soft-shadow overflow-hidden">
-                    <button class="accordion-toggle w-full px-6 py-4 text-left font-medium text-gray-800 flex items-center justify-between hover:text-orange-500">
-                        <span>Obiective pe vârstă</span>
-                        <i class="fas fa-chevron-down transition-transform"></i>
-                    </button>
-                    <div class="accordion-content px-6 pb-4">
-                        <div class="space-y-4 pt-4">
-                            <div class="bg-gray-50 p-4 rounded-lg">
-                                <h4 class="font-medium text-gray-800 mb-2">1,5 – 3 ani</h4>
-                                <p class="text-gray-600 text-sm">Dezvoltare motrică, limbaj, socializare și adaptare</p>
-                            </div>
-                            <div class="bg-gray-50 p-4 rounded-lg">
-                                <h4 class="font-medium text-gray-800 mb-2">3 – 4 ani</h4>
-                                <p class="text-gray-600 text-sm">Gândire logică, comunicare, creativitate și pregătire pentru învățare</p>
-                            </div>
-                            <div class="bg-gray-50 p-4 rounded-lg">
-                                <h4 class="font-medium text-gray-800 mb-2">4 – 6 ani</h4>
-                                <p class="text-gray-600 text-sm">Lectură, scriere, numere, gândire critică și pregătire pentru școală</p>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Calendar Section -->
-        <section class="py-[80px] px-6">
-            <div class="max-w-[1120px] mx-auto fade-in">
-                <h2 class="text-[clamp(2rem,4vw,2.5rem)] display-font font-bold text-gray-800 text-center mb-12">Calendar</h2>
-                <div class="bg-white rounded-2xl soft-shadow overflow-hidden">
-                    <div class="flex flex-wrap border-b border-gray-200">
-                        <button class="tab-button px-6 py-4 font-medium text-gray-800 hover:text-orange-500 border-b-2 border-orange-500 active" data-tab="toamna">
-                            Toamnă
-                        </button>
-                        <button class="tab-button px-6 py-4 font-medium text-gray-600 hover:text-orange-500 border-b-2 border-transparent" data-tab="iarna">
-                            Iarnă
-                        </button>
-                        <button class="tab-button px-6 py-4 font-medium text-gray-600 hover:text-orange-500 border-b-2 border-transparent" data-tab="primavara">
-                            Primăvară
-                        </button>
-                        <button class="tab-button px-6 py-4 font-medium text-gray-600 hover:text-orange-500 border-b-2 border-transparent" data-tab="vara">
-                            Vară
-                        </button>
+        <section class="py-16 px-4 bg-white">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="text-4xl font-display font-bold text-center mb-10">Anotimpuri & Evenimente</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <div class="text-center group">
+                        <img src="childrenpart/floare roz.png" class="w-20 mx-auto mb-4 sticker-icon group-hover:scale-110">
+                        <h3 class="font-bold text-lg text-green-600">Primăvară</h3>
+                        <p class="text-sm text-slate-500">Mărțișor & Paște</p>
                     </div>
-                    <div class="p-8">
-                        <div id="toamna" class="tab-content active">
-                            <h3 class="text-xl font-bold text-gray-800 mb-4">Evenimente de toamnă</h3>
-                            <div class="space-y-4">
-                                <div class="bg-gray-50 p-4 rounded-lg">
-                                    <h4 class="font-medium text-gray-800">Sărbătorirea Independenței</h4>
-                                    <p class="text-gray-600 text-sm">Activități despre istorie și tradiție</p>
-                                </div>
-                                <div class="bg-gray-50 p-4 rounded-lg">
-                                    <h4 class="font-medium text-gray-800">Ziua Grădiniței</h4>
-                                    <p class="text-gray-600 text-sm">Spectacole și activități de familie</p>
-                                </div>
-                                <div class="bg-gray-50 p-4 rounded-lg">
-                                    <h4 class="font-medium text-gray-800">Ziua Artei și Creației</h4>
-                                    <p class="text-gray-600 text-sm">Expoziție de pictură și activități creative</p>
-                                </div>
-                            </div>
+                    <div class="text-center group">
+                        <img src="childrenpart/soare test .png" class="w-20 mx-auto mb-4 sticker-icon group-hover:scale-110">
+                        <h3 class="font-bold text-lg text-yellow-500">Vară</h3>
+                        <p class="text-sm text-slate-500">Jocuri cu apă & 1 Iunie</p>
+                    </div>
+                    <div class="text-center group">
+                        <img src="childrenpart/copac 2.png" class="w-20 mx-auto mb-4 sticker-icon group-hover:scale-110">
+                        <h3 class="font-bold text-lg text-orange-600">Toamnă</h3>
+                        <p class="text-sm text-slate-500">Carnaval & Halloween</p>
+                    </div>
+                    <div class="text-center group">
+                        <img src="childrenpart/brad.png" class="w-20 mx-auto mb-4 sticker-icon group-hover:scale-110">
+                        <h3 class="font-bold text-lg text-blue-600">Iarnă</h3>
+                        <p class="text-sm text-slate-500">Moș Crăciun & Serbare</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 px-4 bg-brand-cream">
+            <div class="max-w-5xl mx-auto">
+                <div class="flex items-center justify-center gap-4 mb-10">
+                    <img src="childrenpart/capsuna.png" class="w-12 sticker-icon hidden md:block">
+                    <h2 class="text-4xl font-display font-bold text-center">Meniul Săptămânii</h2>
+                    <img src="childrenpart/inghetata.png" class="w-12 sticker-icon hidden md:block">
+                </div>
+                
+                <div class="menu-notebook p-6 md:p-10 rounded-xl transform rotate-1 border border-slate-200 relative">
+                    <div class="pl-4 overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="text-brand-orange border-b-2 border-brand-orange">
+                                    <th class="p-4 font-display text-xl">Ziua</th>
+                                    <th class="p-4 font-display text-xl">Prânz</th>
+                                    <th class="p-4 font-display text-xl">Gustare</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-lg">
+                                <tr class="border-b border-dashed border-slate-300">
+                                    <td class="p-4 font-bold">Luni</td>
+                                    <td class="p-4">Supă cremă de legume / Piure cu chiftele de curcan</td>
+                                    <td class="p-4">Fructe de sezon</td>
+                                </tr>
+                                <tr class="border-b border-dashed border-slate-300 bg-yellow-50/50">
+                                    <td class="p-4 font-bold">Marți</td>
+                                    <td class="p-4">Ciorbiță de văcuță / Paste cu sos de roșii</td>
+                                    <td class="p-4">Iaurt cu biscuiți</td>
+                                </tr>
+                                <tr class="border-b border-dashed border-slate-300">
+                                    <td class="p-4 font-bold">Miercuri</td>
+                                    <td class="p-4">Supă de găluște / Pilaf cu pui</td>
+                                    <td class="p-4">Plăcintă cu mere</td>
+                                </tr>
+                                <tr class="border-b border-dashed border-slate-300 bg-yellow-50/50">
+                                    <td class="p-4 font-bold">Joi</td>
+                                    <td class="p-4">Supă de tăiței / Cartofi gratinați cu brânzică</td>
+                                    <td class="p-4">Banane</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-4 font-bold">Vineri</td>
+                                    <td class="p-4">Ciorbă de perișoare / Pește la cuptor cu legume</td>
+                                    <td class="p-4">Orez cu lapte</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="parinti" class="py-16 px-4 bg-white">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="text-4xl font-display font-bold text-center mb-12">Părinții spun...</h2>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bg-brand-cream p-6 rounded-3xl shadow-playful relative mt-6">
+                        <img src="childrenpart/pisica.png" class="absolute -top-8 left-6 w-16 sticker-icon bg-white rounded-full p-1 border-2 border-orange-100">
+                        <div class="mt-6">
+                            <p class="italic text-slate-600 mb-4">"Ana s-a acomodat din prima zi. Educatorii sunt minunați!"</p>
+                            <p class="font-bold text-right text-brand-orange">- Maria D.</p>
                         </div>
-                        <div id="iarna" class="tab-content">
-                            <h3 class="text-xl font-bold text-gray-800 mb-4">Evenimente de iarnă</h3>
-                            <div class="space-y-4">
-                                <div class="bg-gray-50 p-4 rounded-lg">
-                                    <h4 class="font-medium text-gray-800">Colindat și Crăciun</h4>
-                                    <p class="text-gray-600 text-sm">Spectacol de Crăciun și activități tradiționale</p>
-                                </div>
-                                <div class="bg-gray-50 p-4 rounded-lg">
-                                    <h4 class="font-medium text-gray-800">Anul Nou</h4>
-                                    <p class="text-gray-600 text-sm">Proiecte și activități cu tema noului an</p>
-                                </div>
-                                <div class="bg-gray-50 p-4 rounded-lg">
-                                    <h4 class="font-medium text-gray-800">Ziua Sănătății</h4>
-                                    <p class="text-gray-600 text-sm">Activități sportive și educație sanitară</p>
-                                </div>
-                            </div>
+                    </div>
+                    <div class="bg-brand-cream p-6 rounded-3xl shadow-playful relative mt-6">
+                        <img src="childrenpart/caine.png" class="absolute -top-8 left-6 w-16 sticker-icon bg-white rounded-full p-1 border-2 border-orange-100">
+                        <div class="mt-6">
+                            <p class="italic text-slate-600 mb-4">"Ne place mult accentul pe limba germană și ieșirile în parc."</p>
+                            <p class="font-bold text-right text-brand-blue">- Ion P.</p>
                         </div>
-                        <div id="primavara" class="tab-content">
-                            <h3 class="text-xl font-bold text-gray-800 mb-4">Evenimente de primăvară</h3>
-                            <div class="space-y-4">
-                                <div class="bg-gray-50 p-4 rounded-lg">
-                                    <h4 class="font-medium text-gray-800">Ziua Mamei</h4>
-                                    <p class="text-gray-600 text-sm">Activități cu participare de părinți</p>
-                                </div>
-                                <div class="bg-gray-50 p-4 rounded-lg">
-                                    <h4 class="font-medium text-gray-800">Ziua Părintelui</h4>
-                                    <p class="text-gray-600 text-sm">Proiecte și activități dedicate tatăilor</p>
-                                </div>
-                                <div class="bg-gray-50 p-4 rounded-lg">
-                                    <h4 class="font-medium text-gray-800">Ziua Naturii</h4>
-                                    <p class="text-gray-600 text-sm">Explorare și activități în aer liber</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="vara" class="tab-content">
-                            <h3 class="text-xl font-bold text-gray-800 mb-4">Evenimente de vară</h3>
-                            <div class="space-y-4">
-                                <div class="bg-gray-50 p-4 rounded-lg">
-                                    <h4 class="font-medium text-gray-800">Festivalul Verii</h4>
-                                    <p class="text-gray-600 text-sm">Spectacole, jocuri și activități diverse</p>
-                                </div>
-                                <div class="bg-gray-50 p-4 rounded-lg">
-                                    <h4 class="font-medium text-gray-800">Ziua Graduației</h4>
-                                    <p class="text-gray-600 text-sm">Spectacole de absolvire și activități finale</p>
-                                </div>
-                                <div class="bg-gray-50 p-4 rounded-lg">
-                                    <h4 class="font-medium text-gray-800">Păsărea Colibri</h4>
-                                    <p class="text-gray-600 text-sm">Eveniment cu animatori și activități interactive</p>
-                                </div>
-                            </div>
+                    </div>
+                    <div class="bg-brand-cream p-6 rounded-3xl shadow-playful relative mt-6">
+                        <img src="childrenpart/iepuras.png" class="absolute -top-8 left-6 w-16 sticker-icon bg-white rounded-full p-1 border-2 border-orange-100">
+                        <div class="mt-6">
+                            <p class="italic text-slate-600 mb-4">"Mâncarea e super, iar copilul vine acasă fericit!"</p>
+                            <p class="font-bold text-right text-brand-pink">- Elena M.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Meniu Section -->
-        <section class="py-[80px] px-6 border-t border-gray-200">
-            <div class="max-w-[1120px] mx-auto fade-in">
-                <h2 class="text-[clamp(2rem,4vw,2.5rem)] display-font font-bold text-gray-800 text-center mb-12">Meniu alimentar</h2>
-                <div class="bg-white rounded-2xl soft-shadow overflow-hidden">
-                    <div class="p-8">
-                        <h3 class="text-xl font-bold text-gray-800 mb-6">Previzualizare meniu (1 săptămână)</h3>
-                        <div class="overflow-x-auto">
-                            <table class="w-full">
-                                <thead>
-                                    <tr class="border-b border-gray-200">
-                                        <th class="text-left py-3 px-4 font-medium text-gray-600">Ziua</th>
-                                        <th class="text-left py-3 px-4 font-medium text-gray-600">Prânz</th>
-                                        <th class="text-left py-3 px-4 font-medium text-gray-600">Mâncare de seară</th>
-                                        <th class="text-left py-3 px-4 font-medium text-gray-600">Desert</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class="border-b border-gray-200">
-                                        <td class="py-3 px-4 font-medium text-gray-800">Luni</td>
-                                        <td class="py-3 px-4 text-gray-600">Chiftele cu pure</td>
-                                        <td class="py-3 px-4 text-gray-600">Pâine cu unt și brânză</td>
-                                        <td class="py-3 px-4 text-gray-600">Fructe</td>
-                                    </tr>
-                                    <tr class="border-b border-gray-200">
-                                        <td class="py-3 px-4 font-medium text-gray-800">Marți</td>
-                                        <td class="py-3 px-4 text-gray-600">Paste carbonara</td>
-                                        <td class="py-3 px-4 text-gray-600">Ciuperci călit de grăsime</td>
-                                        <td class="py-3 px-4 text-gray-600">Gogosi</td>
-                                    </tr>
-                                    <tr class="border-b border-gray-200">
-                                        <td class="py-3 px-4 font-medium text-gray-800">Miercuri</td>
-                                        <td class="py-3 px-4 text-gray-600">Stroganoff de viță</td>
-                                        <td class="py-3 px-4 text-gray-600">Branză de vaci cu conservă</td>
-                                        <td class="py-3 px-4 text-gray-600">Fructe</td>
-                                    </tr>
-                                    <tr class="border-b border-gray-200">
-                                        <td class="py-3 px-4 font-medium text-gray-800">Joi</td>
-                                        <td class="py-3 px-4 text-gray-600">Omletă cu legume</td>
-                                        <td class="py-3 px-4 text-gray-600">Pâine cu pâté de viță</td>
-                                        <td class="py-3 px-4 text-gray-600">Prajitură de cacao</td>
-                                    </tr>
-                                    <tr class="border-b border-gray-200">
-                                        <td class="py-3 px-4 font-medium text-gray-800">Vineri</td>
-                                        <td class="py-3 px-4 text-gray-600">Pui cu orez</td>
-                                        <td class="py-3 px-4 text-gray-600">Branză de curd</td>
-                                        <td class="py-3 px-4 text-gray-600">Fructe</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="mt-8 text-center">
-                            <a href="TODO" class="inline-flex items-center space-x-2 bg-gray-100 hover:bg-gray-200 text-gray-700 px-6 py-3 rounded-full font-medium transition-colors">
-                                <i class="fas fa-download"></i>
-                                <span>Descarcă meniul complet (PDF)</span>
-                            </a>
-                        </div>
+        <section id="contact" class="py-20 px-4">
+             <div class="max-w-4xl mx-auto bg-brand-orange rounded-[3rem] p-1 shadow-2xl rotate-1">
+                <div class="bg-white rounded-[2.8rem] p-8 md:p-12 relative overflow-hidden">
+                    <img src="childrenpart/inima.png" class="absolute top-6 right-6 w-16 sticker-icon rotate-12 opacity-80" alt="Inima">
+                    
+                    <div class="text-center mb-10">
+                        <h2 class="text-4xl font-display font-bold text-slate-800 mb-2">Hai să ne cunoaștem!</h2>
+                        <p class="text-slate-500">Programează o vizită sau scrie-ne un mesaj.</p>
                     </div>
-                </div>
-            </div>
-        </section>
 
-        <!-- Recenzii Section -->
-        <section id="parinti" class="py-[80px] px-6">
-            <div class="max-w-[1120px] mx-auto fade-in">
-                <h2 class="text-[clamp(2rem,4vw,2.5rem)] display-font font-bold text-gray-800 text-center mb-12">Părinți vorbesc</h2>
-                <div class="grid md:grid-cols-3 gap-6 mb-12">
-                    <div class="testimonial-card p-6 rounded-xl soft-shadow card-hover">
-                        <div class="flex items-center space-x-2 mb-4">
-                            <i class="fas fa-star text-yellow-500"></i>
-                            <i class="fas fa-star text-yellow-500"></i>
-                            <i class="fas fa-star text-yellow-500"></i>
-                            <i class="fas fa-star text-yellow-500"></i>
-                            <i class="fas fa-star text-yellow-500"></i>
-                        </div>
-                        <p class="text-gray-600 mb-4">Compania Mică a fost o alegere excelentă pentru fiica mea. Educatorii sunt foarte dedicati și comunicarea este transparentă.</p>
-                        <div class="flex items-center space-x-3">
-                            <div class="w-10 h-10 bg-gray-300 rounded-full"></div>
-                            <div>
-                                <p class="font-medium text-gray-800">Maria D.</p>
-                                <p class="text-gray-500 text-sm">Mamă lui Ana (4 ani)</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-card p-6 rounded-xl soft-shadow card-hover">
-                        <div class="flex items-center space-x-2 mb-4">
-                            <i class="fas fa-star text-yellow-500"></i>
-                            <i class="fas fa-star text-yellow-500"></i>
-                            <i class="fas fa-star text-yellow-500"></i>
-                            <i class="fas fa-star text-yellow-500"></i>
-                            <i class="fas fa-star text-yellow-500"></i>
-                        </div>
-                        <p class="text-gray-600 mb-4">Bun venit la o grădiniță unde copiii se simt în siguranță. Am fost plăcut surprinși de metoda de predare germană.</p>
-                        <div class="flex items-center space-x-3">
-                            <div class="w-10 h-10 bg-gray-300 rounded-full"></div>
-                            <div>
-                                <p class="font-medium text-gray-800">Ion P.</p>
-                                <p class="text-gray-500 text-sm">Tatăl lui Alex (5 ani)</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-card p-6 rounded-xl soft-shadow card-hover">
-                        <div class="flex items-center space-x-2 mb-4">
-                            <i class="fas fa-star text-yellow-500"></i>
-                            <i class="fas fa-star text-yellow-500"></i>
-                            <i class="fas fa-star text-yellow-500"></i>
-                            <i class="fas fa-star text-yellow-500"></i>
-                            <i class="fas fa-star text-yellow-500"></i>
-                        </div>
-                        <p class="text-gray-600 mb-4">Oamenii din Compania Mică au o abordare bună și blândă. Copilul nostru s-a adaptat rapid și se simte fericit.</p>
-                        <div class="flex items-center space-x-3">
-                            <div class="w-10 h-10 bg-gray-300 rounded-full"></div>
-                            <div>
-                                <p class="font-medium text-gray-800">Elena M.</p>
-                                <p class="text-gray-500 text-sm">Mamă lui Sofia (3 ani)</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- FAQ Section -->
-                <div class="bg-white rounded-2xl soft-shadow overflow-hidden mb-12">
-                    <h3 class="text-xl font-bold text-gray-800 px-6 py-4">Întrebări frecvente</h3>
-                    <div class="space-y-1">
-                        <div class="border-t border-gray-200">
-                            <button class="accordion-toggle w-full px-6 py-4 text-left font-medium text-gray-800 flex items-center justify-between hover:text-orange-500">
-                                <span>Care sunt orele de programare?</span>
-                                <i class="fas fa-chevron-down transition-transform"></i>
-                            </button>
-                            <div class="accordion-content px-6 pb-4 text-gray-600">
-                                Grădinița rulează de la 7:30 la 18:00, Luni-Vineri. Afterschool are program flexibil conform necesităților fiecăruia.
-                            </div>
-                        </div>
-                        <div class="border-t border-gray-200">
-                            <button class="accordion-toggle w-full px-6 py-4 text-left font-medium text-gray-800 flex items-center justify-between hover:text-orange-500">
-                                <span>Cât costă înscrierea?</span>
-                                <i class="fas fa-chevron-down transition-transform"></i>
-                            </button>
-                            <div class="accordion-content px-6 pb-4 text-gray-600">
-                                Vă rugăm să ne contactați pentru detalii despre tarife, având în vedere că acestea depind de programul ales și vârsta copilului.
-                            </div>
-                        </div>
-                        <div class="border-t border-gray-200">
-                            <button class="accordion-toggle w-full px-6 py-4 text-left font-medium text-gray-800 flex items-center justify-between hover:text-orange-500">
-                                <span>Ce documente sunt necesare?</span>
-                                <i class="fas fa-chevron-down transition-transform"></i>
-                            </button>
-                            <div class="accordion-content px-6 pb-4 text-gray-600">
-                                Certificat de naștere, documente de identitate, certificat de sănătate și acordul părinților.
-                            </div>
-                        </div>
-                        <div class="border-t border-gray-200">
-                            <button class="accordion-toggle w-full px-6 py-4 text-left font-medium text-gray-800 flex items-center justify-between hover:text-orange-500">
-                                <span>Există program de vacanță?</span>
-                                <i class="fas fa-chevron-down transition-transform"></i>
-                            </button>
-                            <div class="accordion-content px-6 pb-4 text-gray-600">
-                                Da, avem programe de vacanță în perioadele principale (Crăciun, Vară).
-                            </div>
-                        </div>
-                        <div class="border-t border-gray-200">
-                            <button class="accordion-toggle w-full px-6 py-4 text-left font-medium text-gray-800 flex items-center justify-between hover:text-orange-500">
-                                <span>Cât timp durează programarea unei vizite?</span>
-                                <i class="fas fa-chevron-down transition-transform"></i>
-                            </button>
-                            <div class="accordion-content px-6 pb-4 text-gray-600">
-                                Vizita durează aproximativ 1 oră și include prezentarea facilităților și discuția cu directorul.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CTA Band -->
-                <div class="bg-orange-500 rounded-2xl soft-shadow p-8 text-center">
-                    <h3 class="text-[clamp(1.5rem,3vw,2rem)] display-font font-bold text-white mb-4">Programează o vizită</h3>
-                    <p class="text-orange-100 mb-8 max-w-[68ch] mx-auto">
-                        Vă invităm să vizitați locația noastră și să vedeți în persoană cum funcționează Compania Mică.
-                    </p>
-                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                        <button onclick="openModal()" class="bg-white hover:bg-gray-100 text-orange-500 px-8 py-4 rounded-full font-medium text-lg transition-colors">
-                            Programează acum
-                        </button>
-                        <a href="https://wa.me/40758246969" target="_blank" class="flex items-center justify-center space-x-2 px-8 py-4 rounded-full border border-orange-300 text-white hover:bg-orange-600 transition-colors">
-                            <i class="fab fa-whatsapp"></i>
-                            <span>Scrie-ne pe WhatsApp</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="py-[80px] px-6 border-t border-gray-200">
-            <div class="max-w-[1120px] mx-auto fade-in">
-                <h2 class="text-[clamp(2rem,4vw,2.5rem)] display-font font-bold text-gray-800 text-center mb-12">Contact</h2>
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div class="bg-white p-8 rounded-2xl soft-shadow">
-                        <h3 class="text-xl font-bold text-gray-800 mb-6">Informații de contact</h3>
-                        <div class="space-y-4">
-                            <div class="flex items-start space-x-3">
-                                <i class="fas fa-map-marker-alt text-orange-500 mt-1"></i>
-                                <div>
-                                    <h4 class="font-medium text-gray-800">Adresă</h4>
-                                    <p class="text-gray-600">Strada Ion Ghica, nr. X, Sector 2, București</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start space-x-3">
-                                <i class="fas fa-phone text-orange-500 mt-1"></i>
-                                <div>
-                                    <h4 class="font-medium text-gray-800">Telefon</h4>
-                                    <p class="text-gray-600">+40 758 246 969 / +40 744 557 292</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start space-x-3">
-                                <i class="fas fa-envelope text-orange-500 mt-1"></i>
-                                <div>
-                                    <h4 class="font-medium text-gray-800">Email</h4>
-                                    <p class="text-gray-600">office@companiamica.ro</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start space-x-3">
-                                <i class="fas fa-clock text-orange-500 mt-1"></i>
-                                <div>
-                                    <h4 class="font-medium text-gray-800">Program</h4>
-                                    <p class="text-gray-600">Luni-Vineri: 7:30 - 18:00</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mt-8">
-                            <h4 class="font-medium text-gray-800 mb-4">Urmăriți-ne</h4>
-                            <div class="flex space-x-4">
-                                <a href="TODO" class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-700 hover:bg-orange-500 hover:text-white transition-colors">
-                                    <i class="fab fa-facebook-f"></i>
-                                </a>
-                                <a href="TODO" class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-700 hover:bg-orange-500 hover:text-white transition-colors">
-                                    <i class="fab fa-instagram"></i>
-                                </a>
-                                <a href="https://wa.me/40758246969" class="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center text-white hover:bg-orange-600 transition-colors">
-                                    <i class="fab fa-whatsapp"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-white p-8 rounded-2xl soft-shadow">
-                        <h3 class="text-xl font-bold text-gray-800 mb-6">Trimiteți un mesaj</h3>
-                        <form class="space-y-4">
-                            <div>
-                                <label class="block text-gray-700 mb-2">Nume complet</label>
-                                <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500" placeholder="Prenume Nume">
-                            </div>
-                            <div>
-                                <label class="block text-gray-700 mb-2">Telefon</label>
-                                <input type="tel" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500" placeholder="07xx xxx xxx">
-                            </div>
-                            <div>
-                                <label class="block text-gray-700 mb-2">Email</label>
-                                <input type="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500" placeholder="email@example.com">
-                            </div>
-                            <div>
-                                <label class="block text-gray-700 mb-2">Mesaj</label>
-                                <textarea class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500" rows="4" placeholder="Scrieți mesajul dumneavoastră..."></textarea>
-                            </div>
-                            <button type="submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-medium transition-colors">
-                                Trimiteți mesajul
-                            </button>
+                    <div class="grid md:grid-cols-2 gap-10">
+                        <form id="contactForm" class="space-y-4">
+                            <input type="text" placeholder="Numele tău" class="w-full bg-slate-50 p-4 rounded-xl border border-slate-200 focus:border-brand-orange outline-none">
+                            <input type="tel" placeholder="Telefon" class="w-full bg-slate-50 p-4 rounded-xl border border-slate-200 focus:border-brand-orange outline-none">
+                            <textarea rows="3" placeholder="Mesaj..." class="w-full bg-slate-50 p-4 rounded-xl border border-slate-200 focus:border-brand-orange outline-none"></textarea>
+                            <button class="w-full bg-slate-800 text-white font-bold py-4 rounded-xl hover:bg-slate-700 transition-colors shadow-lg">Trimite</button>
                         </form>
+
+                        <div class="space-y-6 text-slate-600 flex flex-col justify-center">
+                             <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center text-brand-orange"><i class="fas fa-map-pin"></i></div>
+                                <div><strong>Adresă:</strong><br>Strada Județului, Numărul 23, Sector 2, București</div>
+                             </div>
+                             <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-brand-blue"><i class="fas fa-phone"></i></div>
+                                <div><strong>Telefon:</strong><br>0758 246 969</div>
+                             </div>
+                             <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 bg-pink-100 rounded-full flex items-center justify-center text-brand-pink"><i class="fas fa-envelope"></i></div>
+                                <div><strong>Email:</strong><br>office@companiamica.ro</div>
+                             </div>
+                        </div>
                     </div>
                 </div>
-            </div>
+             </div>
         </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-12 px-6 border-t border-gray-700">
-        <div class="max-w-[1120px] mx-auto">
-            <div class="grid md:grid-cols-3 gap-8 mb-8">
-                <div>
-                    <div class="flex items-center space-x-3 mb-4">
-                        <img src="Compania-Mica-Logo-01.png" alt="Compania Mică Logo" class="h-12">
-                    </div>
-                    <p class="text-gray-400 mb-4">Grădiniță și Afterschool privat în Sector 2, București. Lângă Parcul Circului. Predare și în limba germană.</p>
-                    <div class="flex space-x-4">
-                        <a href="TODO" class="text-gray-400 hover:text-white">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="TODO" class="text-gray-400 hover:text-white">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="https://wa.me/40758246969" class="text-gray-400 hover:text-white">
-                            <i class="fab fa-whatsapp"></i>
-                        </a>
-                    </div>
-                </div>
-                <div>
-                    <h4 class="font-bold text-lg mb-4">Navigare rapidă</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#despre" class="text-gray-400 hover:text-white transition-colors">Despre</a></li>
-                        <li><a href="#programe" class="text-gray-400 hover:text-white transition-colors">Programe</a></li>
-                        <li><a href="#o-zi" class="text-gray-400 hover:text-white transition-colors">O zi la noi</a></li>
-                        <li><a href="#parinti" class="text-gray-400 hover:text-white transition-colors">Părinți</a></li>
-                        <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-bold text-lg mb-4">Contact</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li class="flex items-start">
-                            <i class="fas fa-map-marker-alt mr-2 mt-1"></i>
-                            <span>Strada Ion Ghica, nr. X, Sector 2, București</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-phone mr-2"></i>
-                            <span>TODO</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-envelope mr-2"></i>
-                            <span>TODO@companiamica.ro</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-clock mr-2"></i>
-                            <span>Luni-Vineri: 7:30 - 18:00</span>
-                        </li>
-                    </ul>
-                </div>
+    <footer class="bg-slate-800 text-white py-12 px-6">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-8 text-sm">
+            <div>
+                <img src="Compania-Mica-Logo-01.png" class="h-10 bg-white rounded p-1 mb-4" alt="Logo">
+                <p class="text-slate-400">Grădiniță cu suflet în inima Bucureștiului.</p>
             </div>
-            <div class="border-t border-gray-700 pt-8 text-center text-gray-500">
-                <p>© 2024 Compania Mică. Toate drepturile rezervate.</p>
+            <div>
+                <h4 class="font-bold text-lg mb-4 text-brand-yellow">Navigare</h4>
+                <ul class="space-y-2 text-slate-400">
+                    <li><a href="#programe" class="hover:text-white">Programe</a></li>
+                    <li><a href="#parinti" class="hover:text-white">Părinți</a></li>
+                    <li><a href="#contact" class="hover:text-white">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-lg mb-4 text-brand-yellow">Contact</h4>
+                <p class="text-slate-400">Strada Județului, Numărul 23, Sector 2, București</p>
+                <p class="text-slate-400">0758 246 969</p>
             </div>
         </div>
     </footer>
 
-    <!-- Booking Modal -->
-    <div id="visitModal" class="modal">
-        <div class="modal-content">
-            <div class="p-8">
-                <div class="flex justify-between items-center mb-6">
-                    <h2 class="text-2xl display-font font-bold text-gray-800">Programează o vizită</h2>
-                    <button onclick="closeModal()" class="text-gray-500 hover:text-gray-700">
-                        <i class="fas fa-times text-xl"></i>
-                    </button>
-                </div>
-                <form class="space-y-4">
-                    <div>
-                        <label class="block text-gray-700 mb-2">Nume complet</label>
-                        <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500" placeholder="Prenume Nume" required>
-                    </div>
-                    <div>
-                        <label class="block text-gray-700 mb-2">Telefon</label>
-                        <input type="tel" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500" placeholder="07xx xxx xxx" required>
-                    </div>
-                    <div>
-                        <label class="block text-gray-700 mb-2">Vârsta copilului</label>
-                        <input type="number" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500" placeholder="1,5" min="1" max="12" step="0.5" required>
-                    </div>
-                    <div>
-                        <label class="block text-gray-700 mb-2">Program dorit</label>
-                        <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500" required>
-                            <option value="">Selectați programul</option>
-                            <option value="gradinita">Grădiniță (1,5 – 6 ani)</option>
-                            <option value="afterschool">Afterschool (0 – IV clase)</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-gray-700 mb-2">Dată preferată</label>
-                        <input type="date" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500" required>
-                    </div>
-                    <div>
-                        <label class="block text-gray-700 mb-2">Oră preferată</label>
-                        <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500" required>
-                            <option value="">Selectați ora</option>
-                            <option value="09:00">09:00</option>
-                            <option value="10:00">10:00</option>
-                            <option value="11:00">11:00</option>
-                            <option value="14:00">14:00</option>
-                            <option value="15:00">15:00</option>
-                            <option value="16:00">16:00</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-gray-700 mb-2">Mesaj (opțional)</label>
-                        <textarea class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500" rows="4" placeholder="Scrieți orice detalii suplimentare..."></textarea>
-                    </div>
-                    <div class="flex items-start space-x-2">
-                        <input type="checkbox" id="gdpr" class="mt-1" required>
-                        <label for="gdpr" class="text-gray-600 text-sm">Sunt de acord cu prelucrarea datelor mele conform GDPR</label>
-                    </div>
-                    <button type="submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-medium transition-colors">
-                        Confirmați programarea
-                    </button>
-                </form>
-            </div>
+    <div id="visitModal" class="fixed inset-0 z-[100] flex items-center justify-center bg-slate-900/50 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="bg-white w-full max-w-md mx-4 rounded-3xl p-8 relative shadow-2xl transform scale-95 transition-transform duration-300">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600"><i class="fas fa-times text-xl"></i></button>
+            <h3 class="text-2xl font-display font-bold text-slate-800 mb-2 flex items-center gap-2">
+                <img src="childrenpart/casa.png" class="w-8"> Vizită
+            </h3>
+            <p class="text-slate-500 mb-6 text-sm">Lasă-ne datele și te sunăm noi!</p>
+            <form id="modalForm" class="space-y-3">
+                <input type="text" placeholder="Nume Părinte" class="w-full p-3 bg-slate-50 rounded-xl border border-slate-200">
+                <input type="tel" placeholder="Telefon" class="w-full p-3 bg-slate-50 rounded-xl border border-slate-200">
+                <input type="text" placeholder="Vârstă copil" class="w-full p-3 bg-slate-50 rounded-xl border border-slate-200">
+                <button type="submit" class="w-full bg-brand-orange text-white font-bold py-3 rounded-xl hover:bg-orange-600 shadow-lg mt-2">Trimite</button>
+            </form>
         </div>
     </div>
 
+    <footer class="bg-slate-800 text-white py-8 px-4">
+        <div class="max-w-6xl mx-auto text-center">
+            <p class="text-sm text-slate-400">© 2026 Compania Mică. Toate drepturile rezervate.</p>
+            <p class="text-xs text-slate-500 mt-2"><a href="https://sky.ro" target="_blank" class="hover:text-white transition-colors">Crafted in the clouds by <img src="skyro.png" class="h-5 inline align-middle ml-1" alt="sky.ro"></a></p>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/40720088880" target="_blank" class="fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 bg-green-500 rounded-full shadow-lg hover:scale-110 transition-transform">
+        <svg viewBox="0 0 24 24" fill="white" class="w-8 h-8">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+        </svg>
+    </a>
+
     <script src="script.js"></script>
+    <script>
+        // Inline script for tabs/modal fallback
+        const modal = document.getElementById('visitModal');
+        const modalContent = modal.querySelector('div');
+        
+        window.openModal = function() {
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            setTimeout(() => modalContent.classList.remove('scale-95'), 10);
+        };
+        window.closeModal = function() {
+            modalContent.classList.add('scale-95');
+            setTimeout(() => modal.classList.add('opacity-0', 'pointer-events-none'), 300);
+        };
+
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.tab-btn').forEach(b => {
+                    b.classList.remove('active', 'bg-white', 'text-brand-orange', 'shadow-sm');
+                    b.classList.add('text-slate-500');
+                });
+                btn.classList.add('active', 'bg-white', 'text-brand-orange', 'shadow-sm');
+                btn.classList.remove('text-slate-500');
+                
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
+                document.getElementById(btn.dataset.target).classList.remove('hidden');
+            });
+        });
+    </script>
 </body>
 </html>

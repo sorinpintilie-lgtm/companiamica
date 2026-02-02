@@ -1,183 +1,139 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Mobile menu toggle
+    
+    // 1. Sticky Header
+    const header = document.getElementById('main-header');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 20) {
+            header.classList.add('py-2', 'shadow-md', 'bg-white/80');
+            header.classList.remove('py-4', 'border-white/20');
+        } else {
+            header.classList.remove('py-2', 'shadow-md', 'bg-white/80');
+            header.classList.add('py-4', 'border-white/20');
+        }
+    });
+
+    // 2. Mobile Menu
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
-
-    if (mobileMenuBtn && mobileMenu) {
-        mobileMenuBtn.addEventListener('click', function() {
+    if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
-            const icon = this.querySelector('i');
-            icon.classList.toggle('fa-bars');
-            icon.classList.toggle('fa-times');
+            const icon = mobileMenuBtn.querySelector('i');
+            if (mobileMenu.classList.contains('hidden')) {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            } else {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            }
+        });
+        document.querySelectorAll('#mobileMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenuBtn.querySelector('i').classList.add('fa-bars');
+                mobileMenuBtn.querySelector('i').classList.remove('fa-times');
+            });
         });
     }
 
-    // Modal functionality
-    window.openModal = function() {
-        document.getElementById('visitModal').classList.add('active');
+    // 3. Tabs Logic (Curriculum & Calendar)
+    const setupTabs = (btnClass, contentClass) => {
+        const btns = document.querySelectorAll(btnClass);
+        const contents = document.querySelectorAll(contentClass);
+
+        btns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                btns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                contents.forEach(c => {
+                    c.classList.add('hidden');
+                    c.classList.remove('active');
+                });
+                
+                const target = document.getElementById(btn.dataset.target);
+                if (target) {
+                    target.classList.remove('hidden');
+                    target.classList.add('active');
+                }
+            });
+        });
+    };
+
+    setupTabs('.tab-btn:not(.season-btn)', '.tab-content'); // Curriculum
+    setupTabs('.season-btn', '.season-content'); // Calendar
+
+    // 4. Accordion (FAQ)
+    document.querySelectorAll('.accordion-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const content = this.nextElementSibling;
+            const icon = this.querySelector('.accordion-icon');
+            const isExpanded = this.getAttribute('aria-expanded') === 'true';
+
+            // Close all
+            document.querySelectorAll('.accordion-btn').forEach(otherBtn => {
+                otherBtn.setAttribute('aria-expanded', 'false');
+                otherBtn.nextElementSibling.classList.remove('open');
+                otherBtn.nextElementSibling.style.maxHeight = null;
+                otherBtn.querySelector('.accordion-icon').style.transform = 'rotate(0deg)';
+            });
+
+            // Toggle current
+            if (!isExpanded) {
+                this.setAttribute('aria-expanded', 'true');
+                content.classList.add('open');
+                content.style.maxHeight = content.scrollHeight + "px";
+                icon.style.transform = 'rotate(180deg)';
+            }
+        });
+    });
+
+    // 5. Modal
+    const modal = document.getElementById('visitModal');
+    const modalContent = modal.querySelector('div.relative');
+    
+    window.openModal = () => {
+        modal.classList.remove('opacity-0', 'pointer-events-none');
+        setTimeout(() => {
+            modalContent.classList.remove('scale-95');
+            modalContent.classList.add('scale-100');
+        }, 10);
         document.body.style.overflow = 'hidden';
     };
-
-    window.closeModal = function() {
-        document.getElementById('visitModal').classList.remove('active');
-        document.body.style.overflow = 'auto';
+    
+    window.closeModal = () => {
+        modalContent.classList.remove('scale-100');
+        modalContent.classList.add('scale-95');
+        setTimeout(() => {
+            modal.classList.add('opacity-0', 'pointer-events-none');
+        }, 300);
+        document.body.style.overflow = '';
+        document.getElementById('modalSuccess').classList.add('hidden');
     };
 
-    document.getElementById('visitModal').addEventListener('click', function(e) {
-        if (e.target === this) {
-            closeModal();
-        }
-    });
-
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && document.getElementById('visitModal').classList.contains('active')) {
-            closeModal();
-        }
-    });
-
-    // Accordion functionality (FIXED FOR FAQ)
-    const accordionToggles = document.querySelectorAll('.accordion-toggle');
-    accordionToggles.forEach(toggle => {
-        toggle.addEventListener('click', function() {
-            const content = this.nextElementSibling;
-            const icon = this.querySelector('i');
-            
-            if (content.classList.contains('active')) {
-                content.classList.remove('active');
-                icon.classList.remove('rotate-180');
-            } else {
-                accordionToggles.forEach(otherToggle => {
-                    otherToggle.nextElementSibling.classList.remove('active');
-                    otherToggle.querySelector('i').classList.remove('rotate-180');
-                });
-                
-                content.classList.add('active');
-                icon.classList.add('rotate-180');
-            }
-        });
-    });
-
-    // Smooth scrolling for anchor links
-    const anchorLinks = document.querySelectorAll('a[href^="#"]');
-    anchorLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
-            
-            if (targetElement) {
-                if (window.innerWidth < 768) {
-                    mobileMenu.classList.add('hidden');
-                    const icon = mobileMenuBtn.querySelector('i');
-                    icon.classList.add('fa-bars');
-                    icon.classList.remove('fa-times');
-                }
-                
-                window.scrollTo({
-                    top: targetElement.offsetTop - 100,
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
-
-    // Tab functionality
-    const tabButtons = document.querySelectorAll('.tab-button');
-    const tabContents = document.querySelectorAll('.tab-content');
-
-    tabButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const tabName = this.dataset.tab;
-            
-            tabButtons.forEach(btn => {
-                btn.classList.remove('active');
-                btn.classList.remove('text-gray-800');
-                btn.classList.remove('border-orange-500');
-                btn.classList.add('text-gray-600');
-                btn.classList.add('border-transparent');
+    // 6. Form Handling
+    const setupForm = (formId, successId) => {
+        const form = document.getElementById(formId);
+        if (form) {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                document.getElementById(successId).classList.remove('hidden');
+                form.reset();
+                if (formId === 'modalForm') setTimeout(closeModal, 2500);
             });
-            
-            tabContents.forEach(content => {
-                content.classList.remove('active');
-            });
-            
-            this.classList.add('active');
-            this.classList.add('text-gray-800');
-            this.classList.add('border-orange-500');
-            this.classList.remove('text-gray-600');
-            this.classList.remove('border-transparent');
-            
-            const targetTab = document.getElementById(tabName);
-            if (targetTab) {
-                targetTab.classList.add('active');
-            }
-        });
-    });
-
-    // Scroll animation
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
+        }
     };
+    setupForm('contactForm', 'contactSuccess');
+    setupForm('modalForm', 'modalSuccess');
 
-    const observer = new IntersectionObserver(function(entries) {
+    // 7. Scroll Animations
+    const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
             }
         });
-    }, observerOptions);
-
-    const fadeElements = document.querySelectorAll('.fade-in');
-    fadeElements.forEach(element => {
-        observer.observe(element);
-    });
-
-    const stickerElements = document.querySelectorAll('.sticker-animate');
-    stickerElements.forEach(element => {
-        observer.observe(element);
-    });
-
-    // Update active nav link on scroll
-    window.addEventListener('scroll', function() {
-        const sections = document.querySelectorAll('section');
-        const navLinks = document.querySelectorAll('.nav-link');
-        
-        let current = '';
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            
-            if (pageYOffset >= sectionTop - 150) {
-                current = section.getAttribute('id');
-            }
-        });
-        
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === `#${current}`) {
-                link.classList.add('active');
-            }
-        });
-    });
-
-    // Form submission
-    const contactForm = document.querySelector('#contact form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Mulțumim pentru mesaj! V vom contacta în scurt timp.');
-            this.reset();
-        });
-    }
-
-    const bookingForm = document.querySelector('#visitModal form');
-    if (bookingForm) {
-        bookingForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Programare confirmată! V vom contacta pentru confirmare.');
-            closeModal();
-            this.reset();
-        });
-    }
+    }, { threshold: 0.1 });
+    
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 });
